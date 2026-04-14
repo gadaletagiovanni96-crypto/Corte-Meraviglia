@@ -692,6 +692,111 @@ h1, h2, h3 {
 }
 
 
+/* =========================================
+   SEZIONE EVENTI (CERCHI SU DUE RIGHE)
+   ========================================= */
+/* =========================================
+   SEZIONE EVENTI (CERCHI + DECORAZIONI LATERALI)
+   ========================================= */
+.events-section {
+    background-color: var(--color-white); 
+    position: relative; /* FONDAMENTALE: Fa da recinto per le foto assolute */
+    overflow-x: clip; /* FONDAMENTALE: Taglia la metà della foto che esce dallo schermo senza creare barre di scorrimento orizzontali */
+}
+
+/* Proteggiamo i cerchi per farli stare sempre SOPRA le foto laterali */
+.events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 40px; 
+    position: relative;
+    z-index: 2; /* Livello superiore */
+}
+
+/* --- LE IMMAGINI CHE ESCONO DAL BORDO --- */
+.decor-side {
+    position: absolute;
+    top: 50%; /* Le centra verticalmente rispetto a tutta la sezione */
+    transform: translateY(-50%);
+    width: 320px; /* Larghezza della foto */
+    height: 500px; /* Altezza della foto (forma allungata) */
+    object-fit: cover;
+    border-radius: 50px; /* Metà della larghezza: crea l'effetto a "pillola" */
+    z-index: 0; /* Livello inferiore (sotto ai cerchi) */
+    opacity: 0.8; /* Leggermente in trasparenza per non rubare troppo l'attenzione */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.6s ease;
+}
+
+/* Foto di Sinistra: La spingiamo fuori a sinistra per metà della sua larghezza (-160px) */
+.decor-left {
+    left: -160px; 
+}
+
+/* Foto di Destra: La spingiamo fuori a destra per metà della sua larghezza (-160px) */
+.decor-right {
+    right: -160px;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra le righe rispetto alla pagina */
+    gap: 40px; /* Spazio verticale tra la prima e la seconda riga */
+}
+
+.events-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Fondamentale per farli andare a capo su mobile */
+    gap: 40px; /* Spazio orizzontale tra i cerchi */
+}
+
+.event-circle {
+    width: 160px; /* Stessa larghezza... */
+    height: 160px; /* ...e stessa altezza per un quadrato perfetto */
+    border-radius: 50%; /* Trasforma il quadrato in un cerchio perfetto */
+    border: 1px solid rgba(142, 124, 104, 0.3); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.event-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 15px;
+    color: var(--color-accent); 
+    transition: color 0.4s ease;
+}
+
+.event-circle h3 {
+    font-size: 1.05rem;
+    font-family: var(--font-heading);
+    color: var(--color-text-dark);
+    margin: 0;
+    transition: color 0.4s ease;
+}
+
+/* --- Effetto Hover --- */
+.event-circle:hover {
+    background-color: var(--color-accent); 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(142, 124, 104, 0.2);
+    border-color: var(--color-accent);
+}
+
+.event-circle:hover .event-icon,
+.event-circle:hover h3 {
+    color: var(--color-white); 
+}
+
 /* Modifiche per il Mobile (Aggiungi questo DENTRO il tuo blocco @media (max-width: 768px)) */
 
 /* =========================================
@@ -832,5 +937,67 @@ h1, h2, h3 {
     .layout-split .text-content {
         order: -1; /* Forza il testo a salire sempre in prima posizione */
     }
+
+    /* =========================================
+       FIX: FORZA COLORI CHIARI NEL MENU MOBILE 
+       ========================================= */
+    /* Batte la specificità dello stato "scrolled" del PC */
+    .navbar .nav-links a,
+    .navbar.scrolled .nav-links a {
+        color: #FFFFFF !important; 
+    }
+
+    .navbar .submenu a,
+    .navbar.scrolled .submenu a {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    .navbar .submenu a:hover,
+    .navbar.scrolled .submenu a:hover {
+        color: #FFFFFF !important;
+    }
+
+    .navbar .btn-nav,
+    .navbar.scrolled .btn-nav {
+        color: #FFFFFF !important;
+        border-color: var(--color-accent) !important;
+    }
+
+    .events-container {
+        gap: 20px; /* Spazio verticale tra la prima e la seconda riga */
+        padding: 0 5px; /* Evita che i cerchi tocchino il bordo del telefono */
+    }
+
+    .events-row {
+        flex-wrap: nowrap; /* FONDAMENTALE: Impedisce ai cerchi di andare a capo */
+        gap: 8px; /* Spazio orizzontale ridotto al minimo tra i cerchi */
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .event-circle {
+        width: 100px; /* Cerchi molto più piccoli per farne stare 4 in fila */
+        height: 100px;
+        padding: 5px;
+    }
+    
+    .event-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 5px;
+        stroke-width: 1.5; /* Inspessiamo un po' l'icona perché è più piccola */
+    }
+    
+    .event-circle h3 {
+        font-size: 0.65rem; /* Testo minuscolo ma leggibile */
+        letter-spacing: 0;
+        line-height: 1.1;
+    }
+
+
+    /* Nascondiamo le foto laterali su smartphone per non sovrapporle ai cerchi */
+    .decor-side {
+        display: none;
+    }    
     
 }
