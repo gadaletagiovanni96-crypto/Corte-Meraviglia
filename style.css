@@ -27,7 +27,7 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
 /* =========================================
@@ -316,6 +316,7 @@ h1, h2, h3 {
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    padding: 20px 0;
 }
 
 .text-content h2 {
@@ -419,7 +420,7 @@ h1, h2, h3 {
 }
 
 .card-body {
-    margin-top: 25px;
+    padding: 20px;
 }
 
 /* =========================================
@@ -474,12 +475,13 @@ h1, h2, h3 {
     opacity: 0.9; /* Leggermente opaco per eleganza sul fondo scuro */
 }
 
-/* Modifichiamo l'h2 rimuovendo il margine inferiore perché lo gestisce il container */
-.footer-brand h2 {
-    color: var(--color-white);
-    font-size: 2rem;
-    margin-bottom: 0; 
+.footer-logo2 {
+    height: 70px; /* Logo leggermente più piccolo rispetto alla navbar */
+    width: auto;
+    opacity: 0.9; /* Leggermente opaco per eleganza sul fondo scuro */
 }
+
+
 
 .footer-brand p {
     color: #999;
@@ -650,6 +652,46 @@ h1, h2, h3 {
     display: none !important;
 }
 
+.carosello-container {
+    flex: 1; /* Prende l'altra metà dello spazio */
+    width: 100%;
+    min-width: 0; /* Previene problemi di overflow in flexbox */
+}
+
+.carosello-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    /* La magia dello scroll snap */
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.5rem; /* Spazio per la barra di scorrimento */
+    
+    /* Nasconde la barra di scorrimento su alcuni browser per estetica */
+    scrollbar-width: thin;
+    scrollbar-color: var(--giallo-primario) transparent;
+}
+
+/* Stile delle foto nel carosello */
+.carosello-scroll img {
+    flex: 0 0 85%; /* Ogni foto prende l'85% dello spazio, lasciando intravedere la successiva */
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    scroll-snap-align: center; /* Ferma lo scorrimento esattamente al centro dell'immagine */
+    box-shadow: 0 10px 20px rgba(30, 58, 138, 0.1);
+    border: 4px solid var(--bianco);
+}
+
+.scroll-hint {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--blu-primario);
+    margin-top: -0.5rem;
+    font-weight: 600;
+}
+
+
 /* Modifiche per il Mobile (Aggiungi questo DENTRO il tuo blocco @media (max-width: 768px)) */
 
 /* =========================================
@@ -759,10 +801,7 @@ h1, h2, h3 {
     .carousel-btn { font-size: 1.8rem; }
     .cta-slide h3 { font-size: 1.5rem !important; }
 
-    /* Centra il logo e il titolo nel footer su mobile */
-    .footer-logo-container {
-        justify-content: center;
-    }
+    
 
     /* --- FIX: SEZIONE CONCEPT (IL BORGO) SU MOBILE --- */
     .layout-split {
@@ -788,4 +827,10 @@ h1, h2, h3 {
         height: auto;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Ombra più morbida per mobile */
     }
+  
+    /* --- FIX: ORDINE TESTO-IMMAGINE SU MOBILE --- */
+    .layout-split .text-content {
+        order: -1; /* Forza il testo a salire sempre in prima posizione */
+    }
+    
 }
