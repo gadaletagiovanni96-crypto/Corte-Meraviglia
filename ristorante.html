@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Ristorante - Corte Meraviglia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="page-detail.css">
+</head>
+<body>
+
+<header class="navbar fade-in">
+    <div class="logo">
+        <img src="assets/logo_bianco.png" alt="Corte Meraviglia Logo" class="logo-light">
+        <img src="assets/logo_nero.png" alt="Corte Meraviglia Logo" class="logo-dark">
+    </div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Il Borgo</a></li>
+                
+                <li class="dropdown">
+                    <a href="#services" class="dropdown-toggle">Servizi <span class="arrow">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="ristorante.html">Il Ristorante</a></li>
+                        <li><a href="#link-eventi">Ricevimenti</a></li>
+                        <li><a href="#link-relais">B&B Relais</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#reviews">Recensioni</a></li>
+                <li><a href="#contact">Contatti</a></li>
+                <li><a href="#contact" class="btn-nav">Crea il tuo evento</a></li>
+            </ul>
+        </nav>
+</header>
+        <section class="page-hero">
+            <img src="assets/grand_pom.jpg" alt="Titolo Pagina" class="page-hero-bg">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content slide-up">
+                <span class="page-subtitle">Esperienze a Corte</span>
+                <h1>Il Ristorante</h1>
+            </div>
+        </section>
+
+        <section class="page-intro section-padding">
+            <div class="container narrow">
+                <div class="text-center reveal">
+                    <h2 class="section-title">L'Eccellenza Sartoriale</h2>
+                    <p class="lead-text">Crediamo che ogni momento debba essere un'opera d'arte irripetibile, cucita su misura intorno ai vostri desideri.</p>
+                    <p>La nostra tenuta non è un semplice contenitore, ma una tela bianca pronta ad accogliere la vostra personalità. Ogni dettaglio, dalla luce all'atmosfera, è pensato per risuonare con la storia che volete raccontare.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="page-gallery section-padding">
+            <div class="container">
+                <div class="detail-grid">
+                    <div class="detail-item large reveal">
+                        <img src="assets/mas_2.jpg" alt="Dettaglio 1">
+                    </div>
+                    <div class="detail-item reveal" style="transition-delay: 0.1s;">
+                        <img src="assets/sala1.jpg" alt="Dettaglio 2">
+                    </div>
+                    <div class="detail-item reveal" style="transition-delay: 0.2s;">
+                        <img src="assets/chef.jpg" alt="Dettaglio 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section section-padding">
+            <div class="container">
+                
+                <div class="menu-parchment reveal">
+                    <div class="menu-top-photo">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Piatto Gourmet di Alta Cucina">
+                    </div>
+
+                    <div class="menu-body">
+                        <div class="menu-inner-border">
+                            
+                            <h2 class="menu-title">Il Menù Degustazione</h2>
+
+                            <h3 class="menu-category">Antipasti</h3>
+                            
+                            <div class="menu-item">
+                                <h4>Capesante scottate, topinambur e liquirizia</h4>
+                                <p>Un contrasto delicato tra la dolcezza del mare e le note terrose del sottobosco.</p>
+                                <span class="price">€ 24</span>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <h4>Battuta di fassona, tuorlo fritto e tartufo nero</h4>
+                                <p>Tagliata rigorosamente al coltello, servita con senape antica e scaglie di tartufo fresco.</p>
+                                <span class="price">€ 28</span>
+                            </div>
+
+                            <h3 class="menu-category">Primi</h3>
+                            
+                            <div class="menu-item">
+                                <h4>Risotto Riserva, zafferano e midollo</h4>
+                                <p>La tradizione milanese rivisitata con una riduzione di fondo bruno e foglia d'oro.</p>
+                                <span class="price">€ 32</span>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <h4>Bottoni ripieni di burrata e gambero rosso</h4>
+                                <p>Pasta fresca tirata a mano, crudo di Mazara del Vallo e consommé di crostacei.</p>
+                                <span class="price">€ 30</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="page-cta section-padding text-center">
+            <div class="container reveal">
+                <h3 style="margin-bottom: 30px;">Pronto a vivere la tua esperienza?</h3>
+                <a href="#contact" class="btn btn-dark">Contattaci Ora</a>
+            </div>
+        </section>
+
+        <footer id="contact" class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-container">
+                    <img src="assets/logo_bianco_piccolo.png" alt="Corte Meraviglia Logo" class="footer-logo">
+                    <img src="assets/logo_bianco_scritta.png" alt="Corte Meraviglia Logo" class="footer-logo2">
+                </div>
+                <p>L'eleganza si nasconde nei dettagli.</p>
+            </div>
+            <div class="footer-info">
+                <p>📍 Via Roma 123, 00100 Borgo Antico (IT)</p>
+                <p>📞 +39 012 3456789</p>
+                <p>✉️ info@cortemeraviglia.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Corte Meraviglia. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+
+    </body>
+</html>

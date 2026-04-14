@@ -1,0 +1,223 @@
+/* --- HERO SPECIFICA --- */
+.page-hero {
+    position: relative;
+    height: 60vh; /* Più bassa rispetto alla home per andare subito ai contenuti */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.page-hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-white);
+}
+
+.page-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.page-hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--color-white);
+}
+
+/* --- LAYOUT NARRATIVO --- */
+.container.narrow {
+    max-width: 800px;
+}
+
+.lead-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 30px;
+    color: var(--color-accent);
+}
+
+.text-center { text-align: center; }
+
+/* --- GRIGLIA DI DETTAGLIO --- */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 300px;
+    gap: 20px;
+}
+
+.detail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.detail-item.large {
+    grid-row: span 2;
+}
+
+/* =========================================
+   SEZIONE MENU (PERGAMENA RISTORANTE)
+   ========================================= */
+.menu-section {
+    background-color: var(--color-bg); 
+    position: relative;
+}
+
+.menu-parchment {
+    max-width: 850px; /* Non troppo largo, per simulare un foglio */
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08); /* Ombra morbida per farla "sollevare" dallo sfondo */
+    overflow: hidden; /* Taglia l'immagine in alto seguendo gli angoli arrotondati */
+}
+
+/* L'immagine in cima alla pergamena */
+.menu-top-photo {
+    width: 100%;
+    height: 350px;
+}
+
+.menu-top-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenitore interno */
+.menu-body {
+    padding: 25px; /* Crea uno spazio bianco attorno al bordo interno */
+    background-color: var(--color-white);
+}
+
+/* Il delicato bordo interno stile menù stampato */
+.menu-inner-border {
+    border: 1px solid rgba(142, 124, 104, 0.3); /* Colore tortora in trasparenza */
+    padding: 70px 40px;
+    text-align: center;
+}
+
+.menu-title {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+    color: var(--color-text-dark);
+}
+
+/* Le sezioni del menù (Antipasti, Primi, ecc.) */
+.menu-category {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 60px 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Lineette laterali decorative per le categorie */
+.menu-category::before,
+.menu-category::after {
+    content: '';
+    height: 1px;
+    width: 50px;
+    background-color: rgba(142, 124, 104, 0.4);
+}
+
+/* Singolo Piatto */
+.menu-item {
+    margin-bottom: 40px;
+}
+
+.menu-item h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.menu-item p {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    font-style: italic; /* Il corsivo dà un tocco letterario e chic */
+    max-width: 550px;
+    margin: 0 auto 12px auto;
+    line-height: 1.5;
+}
+
+.menu-item .price {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .page-hero { height: 50vh; }
+    .page-hero-content h1 { font-size: 2.5rem; }
+    .detail-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+    .detail-item.large { grid-row: span 1; }
+
+    .menu-top-photo {
+        height: 220px; /* Immagine più bassa su mobile */
+    }
+
+    .menu-body {
+        padding: 15px;
+    }
+
+    .menu-inner-border {
+        padding: 50px 20px; /* Meno spazio interno su schermi stretti */
+    }
+
+    .menu-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+
+    .menu-category {
+        font-size: 1.2rem;
+        gap: 15px;
+    }
+
+    .menu-category::before,
+    .menu-category::after {
+        width: 30px; /* Lineette più corte */
+    }
+
+    .menu-item h4 {
+        font-size: 1.2rem;
+    }
+
+    .menu-item p {
+        font-size: 0.95rem;
+    }
+}
