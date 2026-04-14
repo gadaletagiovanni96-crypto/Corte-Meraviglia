@@ -56,49 +56,58 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   HEADER & NAVIGAZIONE
+   HEADER & NAVIGAZIONE (PC & MOBILE UNIFICATO)
    ========================================= */
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    padding: 25px 50px;
+    padding: 30px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(249, 248, 246, 0.95);
-    backdrop-filter: blur(10px);
     z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+    background-color: transparent; /* Inizialmente trasparente */
+    transition: all 0.4s ease-in-out;
 }
 
+/* Stato Navbar quando si scorre la pagina */
+.navbar.scrolled {
+    padding: 15px 50px;
+    background-color: rgba(249, 248, 246, 0.98);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* --- LOGO --- */
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--color-text-dark);
+    position: relative;
+    height: 60px;
+    z-index: 1002; /* Sempre in primo piano */
 }
 
 .logo img {
-    height: 60px;       /* Regola l'altezza in base alle tue preferenze */
-    width: auto;        /* Mantiene le proporzioni corrette */
-    display: block;     /* Rimuove spazi vuoti indesiderati sotto l'immagine */
-    transition: transform 0.3s ease; /* Per un leggero effetto al passaggio del mouse */
+    height: 100%;
+    width: auto;
+    transition: opacity 0.4s ease;
 }
 
-/* Opzionale: un piccolo effetto quando ci passi sopra con il mouse */
-.logo img:hover {
-    transform: scale(1.05);
+.logo-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Nascosto di default */
 }
 
-/* Modifica per schermi piccoli (Mobile) */
-@media (max-width: 768px) {
-    .logo img {
-        height: 45px; /* Riduciamo leggermente il logo sugli smartphone */
-    }
+.navbar.scrolled .logo-light {
+    opacity: 0;
 }
 
+.navbar.scrolled .logo-dark {
+    opacity: 1;
+}
+
+/* --- LINK DESKTOP --- */
 .nav-links {
     list-style: none;
     display: flex;
@@ -107,12 +116,16 @@ h1, h2, h3 {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--color-text-dark);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
-    transition: color 0.3s ease;
+    color: #FFFFFF; /* Bianchi di default sulla Hero */
+    transition: color 0.4s ease;
+}
+
+.navbar.scrolled .nav-links a {
+    color: var(--color-text-dark); /* Diventano scuri allo scroll */
 }
 
 .nav-links a::after {
@@ -122,7 +135,7 @@ h1, h2, h3 {
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: var(--color-accent);
+    background-color: currentColor; /* Il trattino segue il colore del testo */
     transition: width 0.3s ease;
 }
 
@@ -130,19 +143,68 @@ h1, h2, h3 {
     width: 100%;
 }
 
+/* --- ICONA HAMBURGER (Nascosta su PC) --- */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px auto;
+    background-color: #FFFFFF; /* Bianco di default */
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled .menu-toggle .bar {
+    background-color: var(--color-text-dark); /* Nero allo scroll */
+}
+
+.menu-toggle.active .bar {
+    background-color: #FFFFFF !important; /* Forza il bianco se il menu è aperto */
+}
+
 /* =========================================
    HERO SECTION
    ========================================= */
 .hero {
+    position: relative;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), 
-                url('https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--color-white);
     padding: 0 20px;
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; 
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
@@ -244,7 +306,7 @@ h1, h2, h3 {
 }
 
 .service-card:hover .card-image img {
-    transform: scale(1.05); /* Lieve zoom immagine all'hover */
+    transform: scale(1.05);
 }
 
 .card-body {
@@ -302,15 +364,10 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   ANIMAZIONI
+   ANIMAZIONI GENERALI
    ========================================= */
-.fade-in {
-    animation: fadeIn 1s ease-in;
-}
-
-.slide-up {
-    animation: slideUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
+.fade-in { animation: fadeIn 1s ease-in; }
+.slide-up { animation: slideUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -318,17 +375,10 @@ h1, h2, h3 {
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Classi per l'animazione allo scroll (gestita da JS) */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -341,93 +391,62 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   MENU HAMBURGER (Stili base)
-   ========================================= */
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-    z-index: 1001; /* Assicura che resti sempre sopra il menu a tendina */
-}
-
-.menu-toggle .bar {
-    display: block;
-    width: 25px;
-    height: 2px;
-    margin: 5px auto;
-    background-color: var(--color-text-dark);
-    transition: all 0.3s ease-in-out;
-}
-
-/* =========================================
    RESPONSIVITÀ (MEDIA QUERIES)
    ========================================= */
 @media (max-width: 900px) {
-    .layout-split {
-        grid-template-columns: 1fr;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
+    .layout-split { grid-template-columns: 1fr; }
+    .footer-content { grid-template-columns: 1fr; text-align: center; }
 }
 
 @media (max-width: 768px) {
-    /* Mostra l'icona hamburger e riordina l'header */
-    .navbar {
-        padding: 15px 25px;
-        flex-direction: row; 
-    }
+    /* Navbar Mobile */
+    .navbar { padding: 15px 25px; }
+    .logo { height: 45px; }
+    .hero h1 { font-size: 2.2rem; }
+    
+    .menu-toggle { display: block; }
 
-    .menu-toggle {
-        display: block;
-    }
-
-    /* Stile del menu a tendina su mobile */
+    /* MENU FULL SCREEN SCURO */
     nav {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0; 
         left: 0;
-        width: 100%;
-        background: rgba(249, 248, 246, 0.98); /* Sfondo crema quasi solido */
-        border-top: 1px solid rgba(0,0,0,0.05);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-        
-        /* Nascondi il menu con clip-path per un'animazione elegante */
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        transition: clip-path 0.4s ease-in-out;
+        width: 100vw; 
+        height: 100vh;
+        background: rgba(42, 42, 42, 0.98);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden; /* Nascosto di default */
+        transition: all 0.4s ease-in-out;
+        z-index: 1001; /* Sotto all'icona hamburger */
     }
 
-    /* Quando il menu è attivo, rivela il rettangolo */
     nav.active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        opacity: 1;
+        visibility: visible;
     }
 
+    /* Stile link del menu mobile */
     .nav-links {
         flex-direction: column;
-        gap: 0;
+        gap: 30px;
         text-align: center;
     }
 
-    .nav-links li {
-        padding: 20px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.03);
+    .nav-links a {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        color: #FFFFFF !important; /* Sempre bianco */
+        text-transform: none;
     }
 
-    .hero h1 {
-        font-size: 2.2rem;
-    }
+    .nav-links a::after { bottom: -10px; }
 
-    /* Animazione: trasforma l'hamburger in una "X" */
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-    }
+    /* Animazione X Hamburger Mobile */
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
