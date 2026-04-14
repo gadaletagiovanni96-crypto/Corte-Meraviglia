@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antico Borgo | Ristorante, Ricevimenti & B&B</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar fade-in">
+        <div class="logo">
+            <img src="assets/logo_nero.png" alt="Antico Borgo Logo">
+        </div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#concept">Il Borgo</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content slide-up">
+            <h1>L'eleganza della storia,<br>il comfort del presente.</h1>
+            <p>Un antico borgo sapientemente restaurato dove tradizione e design minimalista si incontrano.</p>
+            <a href="#services" class="btn">Scopri di più</a>
+        </div>
+    </section>
+
+    <section id="concept" class="concept-section section-padding">
+        <div class="container layout-split">
+            <div class="text-content reveal">
+                <h2>Pietra, Luce e Design</h2>
+                <p>Abbiamo recuperato l'anima di un borgo dimenticato, mantenendo le possenti mura in pietra viva e le antiche volte, per fonderle con linee geometriche pure, arredi minimalisti e un'illuminazione architettonica calda.</p>
+                <p>Il risultato è un rifugio di lusso sussurrato, perfetto per chi cerca l'esclusività in un'atmosfera senza tempo.</p>
+            </div>
+            <div class="image-content reveal">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dettaglio architettonico borgo antico">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">I Nostri Ambienti</h2>
+            <div class="services-grid">
+                
+                <div class="service-card reveal">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ristorante">
+                    </div>
+                    <div class="card-body">
+                        <h3>Il Ristorante</h3>
+                        <p>Sapori autentici del territorio rielaborati in chiave contemporanea, serviti in un'antica stalla dalle volte a botte, oggi tempio dell'alta cucina.</p>
+                    </div>
+                </div>
+
+                <div class="service-card reveal" style="transition-delay: 0.1s;">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sala Ricevimenti">
+                    </div>
+                    <div class="card-body">
+                        <h3>Eventi & Ricevimenti</h3>
+                        <p>La corte centrale e la limonaia di vetro e acciaio offrono una cornice magica e sofisticata per matrimoni e cerimonie esclusive.</p>
+                    </div>
+                </div>
+
+                <div class="service-card reveal" style="transition-delay: 0.2s;">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="B&B Relais">
+                    </div>
+                    <div class="card-body">
+                        <h3>Il Relais (B&B)</h3>
+                        <p>Suite ricavate dalle antiche abitazioni. Letti sospesi, vasche in resina e muri a secco per un riposo rigenerante immerso nel silenzio.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>Antico Borgo</h2>
+                <p>L'eleganza si nasconde nei dettagli.</p>
+            </div>
+            <div class="footer-info">
+                <p>📍 Via Roma 123, 00100 Borgo Antico (IT)</p>
+                <p>📞 +39 012 3456789</p>
+                <p>✉️ info@anticoborgo.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Antico Borgo. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logica per il Menu Mobile
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Chiudi il menu quando si clicca su un link (opzionale ma utile)
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Logica precedente per le animazioni allo scroll
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });        
+    </script>
+</body>
+</html>

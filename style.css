@@ -1,0 +1,433 @@
+/* =========================================
+   VARIABILI & RESET
+   ========================================= */
+:root {
+    --color-bg: #F9F8F6; /* Bianco caldo/Crema */
+    --color-text-dark: #2A2A2A; /* Grigio antracite per eleganza */
+    --color-text-light: #666666; /* Grigio tenue per descrizioni */
+    --color-accent: #8E7C68; /* Tonalità terra/tortora */
+    --color-white: #FFFFFF;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Scorrimento fluido nativo */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   TIPOGRAFIA & UTILITIES
+   ========================================= */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--color-text-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+/* =========================================
+   HEADER & NAVIGAZIONE
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(249, 248, 246, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--color-text-dark);
+}
+
+.logo img {
+    height: 60px;       /* Regola l'altezza in base alle tue preferenze */
+    width: auto;        /* Mantiene le proporzioni corrette */
+    display: block;     /* Rimuove spazi vuoti indesiderati sotto l'immagine */
+    transition: transform 0.3s ease; /* Per un leggero effetto al passaggio del mouse */
+}
+
+/* Opzionale: un piccolo effetto quando ci passi sopra con il mouse */
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Modifica per schermi piccoli (Mobile) */
+@media (max-width: 768px) {
+    .logo img {
+        height: 45px; /* Riduciamo leggermente il logo sugli smartphone */
+    }
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), 
+                url('https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white);
+    padding: 0 20px;
+}
+
+.hero h1 {
+    color: var(--color-white);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+
+.btn:hover {
+    background: var(--color-white);
+    color: var(--color-text-dark);
+}
+
+/* =========================================
+   CONCEPT SECTION
+   ========================================= */
+.layout-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.text-content p {
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.image-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   SERVICES GRID
+   ========================================= */
+.services-section {
+    background-color: var(--color-white);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.service-card {
+    background: var(--color-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.service-card:hover .card-image img {
+    transform: scale(1.05); /* Lieve zoom immagine all'hover */
+}
+
+.card-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.card-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
+    padding: 80px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-brand h2 {
+    color: var(--color-white);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    color: #999;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   ANIMAZIONI
+   ========================================= */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.slide-up {
+    animation: slideUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classi per l'animazione allo scroll (gestita da JS) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   MENU HAMBURGER (Stili base)
+   ========================================= */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    z-index: 1001; /* Assicura che resti sempre sopra il menu a tendina */
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px auto;
+    background-color: var(--color-text-dark);
+    transition: all 0.3s ease-in-out;
+}
+
+/* =========================================
+   RESPONSIVITÀ (MEDIA QUERIES)
+   ========================================= */
+@media (max-width: 900px) {
+    .layout-split {
+        grid-template-columns: 1fr;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mostra l'icona hamburger e riordina l'header */
+    .navbar {
+        padding: 15px 25px;
+        flex-direction: row; 
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Stile del menu a tendina su mobile */
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(249, 248, 246, 0.98); /* Sfondo crema quasi solido */
+        border-top: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        
+        /* Nascondi il menu con clip-path per un'animazione elegante */
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s ease-in-out;
+    }
+
+    /* Quando il menu è attivo, rivela il rettangolo */
+    nav.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .nav-links li {
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Animazione: trasforma l'hamburger in una "X" */
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
