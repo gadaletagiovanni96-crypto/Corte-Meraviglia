@@ -418,6 +418,10 @@ h1, h2, h3 {
     margin-left: 10px; /* La freccia scatta in avanti */
 }
 
+.card-body {
+    margin-top: 25px;
+}
+
 /* =========================================
    FOOTER
    ========================================= */
@@ -605,17 +609,55 @@ h1, h2, h3 {
     color: var(--color-white);
 }
 
+/* --- PULSANTE CTA NELLA NAVBAR --- */
+.btn-nav {
+    padding: 10px 22px;
+    border: 1px solid; /* Il colore verrà definito dagli stati sotto */
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem !important; /* Leggermente più piccolo per eleganza */
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+}
+
+/* 1. Stato sulla Hero (Navbar trasparente) */
+.navbar .btn-nav {
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.5); /* Contorno bianco semitrasparente */
+}
+
+/* 2. Stato Scrolled (Navbar crema) */
+.navbar.scrolled .btn-nav {
+    color: var(--color-text-dark) !important;
+    border-color: var(--color-accent); /* Contorno color tortora/terra */
+}
+
+/* Effetto Hover (riempimento) */
+.navbar .btn-nav:hover {
+    background-color: #FFFFFF;
+    color: var(--color-text-dark) !important;
+}
+
+.navbar.scrolled .btn-nav:hover {
+    background-color: var(--color-accent);
+    color: #FFFFFF !important;
+}
+
+/* Rimuoviamo la linea sotto l'hover per questo pulsante specifico */
+.btn-nav::after {
+    display: none !important;
+}
+
 /* Modifiche per il Mobile (Aggiungi questo DENTRO il tuo blocco @media (max-width: 768px)) */
 
 /* =========================================
    RESPONSIVITÀ (MEDIA QUERIES)
    ========================================= */
-@media (max-width: 900px) {
-    .layout-split { grid-template-columns: 1fr; }
-    .footer-content { grid-template-columns: 1fr; text-align: center; }
-}
 
-@media (max-width: 768px) {
+
+@media (max-width: 920px) {
     /* Navbar Mobile */
     .navbar { padding: 15px 25px; }
     .logo { height: 45px; }
@@ -716,4 +758,34 @@ h1, h2, h3 {
     .review-text { font-size: 1.3rem; }
     .carousel-btn { font-size: 1.8rem; }
     .cta-slide h3 { font-size: 1.5rem !important; }
+
+    /* Centra il logo e il titolo nel footer su mobile */
+    .footer-logo-container {
+        justify-content: center;
+    }
+
+    /* --- FIX: SEZIONE CONCEPT (IL BORGO) SU MOBILE --- */
+    .layout-split {
+        grid-template-columns: 1fr; /* Forza tutto su una singola colonna */
+        gap: 40px; /* Crea un bel respiro tra il testo e la foto */
+        text-align: center; /* Centra il testo per un look più "editoriale" */
+    }
+
+    /* Adattamento elegante dei testi del Concept per smartphone */
+    .text-content h2 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .text-content p {
+        font-size: 1.05rem;
+        padding: 0 10px; /* Evita che il testo tocchi i bordi dello schermo */
+    }
+
+    /* L'immagine riempie tutto lo spazio disponibile */
+    .image-content img {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Ombra più morbida per mobile */
+    }
 }
