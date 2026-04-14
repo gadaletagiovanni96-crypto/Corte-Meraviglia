@@ -142,7 +142,76 @@ h1, h2, h3 {
 .nav-links a:hover::after {
     width: 100%;
 }
+/* --- SOTTOMENU / DROPDOWN (PC) --- */
+.dropdown {
+    position: relative; /* Fa da "recinto" per il sottomenu */
+}
 
+/* La freccina accanto a Servizi */
+.dropdown-toggle .arrow {
+    font-size: 0.7rem;
+    margin-left: 4px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle .arrow {
+    transform: rotate(180deg); /* Ruota la freccia all'hover */
+}
+
+/* Il riquadro del sottomenu */
+.submenu {
+    position: absolute;
+    top: 150%; /* Lo posiziona un po' più giù del link principale */
+    left: 50%;
+    transform: translateX(-50%) translateY(15px); /* Centrato rispetto a "Servizi" */
+    background-color: var(--color-bg); /* Sfondo crema */
+    min-width: 220px;
+    list-style: none;
+    padding: 15px 0;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    
+    /* Nascosto di default con animazione morbida */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+/* Rende visibile il sottomenu quando si passa su "Servizi" */
+.dropdown:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    top: 100%; /* Si attacca esattamente sotto */
+}
+
+/* Stile dei link nel sottomenu */
+.submenu li {
+    padding: 0;
+}
+
+.submenu a {
+    display: block;
+    padding: 12px 25px;
+    color: var(--color-text-dark) !important; /* Forza il nero perché lo sfondo è crema */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* Disattiviamo la lineetta sotto ai link del sottomenu */
+.submenu a::after {
+    display: none; 
+}
+
+/* Elegante effetto di scorrimento al passaggio del mouse nel sottomenu */
+.submenu a:hover {
+    background-color: rgba(0,0,0,0.03);
+    padding-left: 30px; 
+}
 /* --- ICONA HAMBURGER (Nascosta su PC) --- */
 .menu-toggle {
     display: none;
@@ -292,36 +361,61 @@ h1, h2, h3 {
     box-shadow: 0 15px 30px rgba(0,0,0,0.08);
 }
 
+/* --- GESTIONE IMMAGINI CAROSELLO --- */
 .card-image {
+    position: relative;
     width: 100%;
     height: 250px;
     overflow: hidden;
 }
 
 .card-image img {
+    position: absolute; /* Sovrappone tutte le immagini una sull'altra */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    opacity: 0; /* Nasconde tutte le immagini di base */
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.service-card:hover .card-image img {
-    transform: scale(1.05);
+/* Mostra solo l'immagine con la classe active */
+.card-image img.active {
+    opacity: 1; 
 }
 
-.card-body {
-    padding: 30px;
-    text-align: center;
+/* Lieve zoom quando l'immagine è attiva e c'è l'hover */
+.service-card:hover .card-image img.active {
+    transform: scale(1.05); 
 }
 
-.card-body h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+/* --- DESIGN DEL LINK "SCOPRI DI PIÙ" --- */
+.card-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--color-accent); /* Usa il colore terra/tortora */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
 
-.card-body p {
-    color: var(--color-text-light);
-    font-size: 0.95rem;
+/* Aggiungiamo una freccina elegante che si muove all'hover */
+.card-link::after {
+    content: '→';
+    margin-left: 5px;
+    transition: margin-left 0.3s ease;
+}
+
+.card-link:hover {
+    color: var(--color-text-dark); /* Diventa scuro al passaggio del mouse */
+}
+
+.card-link:hover::after {
+    margin-left: 10px; /* La freccia scatta in avanti */
 }
 
 /* =========================================
@@ -362,6 +456,30 @@ h1, h2, h3 {
     color: #777;
     font-size: 0.85rem;
 }
+/* --- GESTIONE LOGO NEL FOOTER --- */
+.footer-logo-container {
+    display: flex; /* Mette gli elementi in riga */
+    align-items: center; /* Li centra verticalmente */
+    gap: 15px; /* Spazio elegante tra il logo e il nome */
+    margin-bottom: 15px;
+}
+
+.footer-logo {
+    height: 45px; /* Logo leggermente più piccolo rispetto alla navbar */
+    width: auto;
+    opacity: 0.9; /* Leggermente opaco per eleganza sul fondo scuro */
+}
+
+/* Modifichiamo l'h2 rimuovendo il margine inferiore perché lo gestisce il container */
+.footer-brand h2 {
+    color: var(--color-white);
+    font-size: 2rem;
+    margin-bottom: 0; 
+}
+
+.footer-brand p {
+    color: #999;
+}
 
 /* =========================================
    ANIMAZIONI GENERALI
@@ -389,6 +507,105 @@ h1, h2, h3 {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* =========================================
+   SEZIONE RECENSIONI (CAROSELLO)
+   ========================================= */
+.reviews-section {
+    background-color: var(--color-bg); /* Mantiene lo sfondo crema */
+    border-top: 1px solid rgba(0,0,0,0.05); /* Lieve separazione visiva */
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px; /* Non troppo largo, per facilitare la lettura */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track-wrapper {
+    overflow: hidden; /* Nasconde le slide che escono dallo schermo */
+    width: 100%;
+    padding: 20px 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Animazione morbida ed elegante */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Ogni slide occupa il 100% dello spazio visibile */
+    padding: 0 50px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.review-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.stars {
+    color: var(--color-accent); /* Colore tortora per le stelle */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.review-text {
+    font-family: var(--font-heading); /* Font elegante Serif */
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-text-dark);
+    margin-bottom: 30px;
+}
+
+.review-author {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-light);
+}
+
+/* Stile bottoni freccia */
+.carousel-btn {
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    color: var(--color-text-dark);
+    transform: scale(1.1);
+}
+
+/* Quando si arriva all'inizio o alla fine, la freccia si sbiadisce */
+.carousel-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+    transform: none;
+}
+
+/* Bottone per l'ultima slide */
+.btn-dark {
+    border-color: var(--color-text-dark);
+    color: var(--color-text-dark);
+}
+
+.btn-dark:hover {
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
+}
+
+/* Modifiche per il Mobile (Aggiungi questo DENTRO il tuo blocco @media (max-width: 768px)) */
 
 /* =========================================
    RESPONSIVITÀ (MEDIA QUERIES)
@@ -449,4 +666,54 @@ h1, h2, h3 {
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* --- SOTTOMENU MOBILE (Fisarmonica) --- */
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .submenu {
+        position: static; /* Rimuove il posizionamento fluttuante del PC */
+        transform: none;
+        background-color: transparent;
+        box-shadow: none;
+        min-width: 100%;
+        padding: 0;
+        
+        /* Chiuso di default (altezza zero) */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+    }
+
+    /* Classe aggiunta tramite Javascript al tocco */
+    .submenu.open {
+        max-height: 250px; /* Abbastanza alto per mostrare i link */
+        padding-top: 20px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .submenu a {
+        font-family: var(--font-body); /* Font più moderno e leggibile */
+        font-size: 1.1rem; /* Più piccolo rispetto ai link principali */
+        color: rgba(255, 255, 255, 0.7) !important; /* Bianco leggermente trasparente */
+        padding: 10px 0;
+        letter-spacing: 2px;
+    }
+
+    .submenu a:hover {
+        padding-left: 0;
+        background-color: transparent;
+        color: #FFFFFF !important;
+    }
+    /* Adattamenti Carosello Mobile */
+    .carousel-slide { padding: 0 10px; }
+    .review-text { font-size: 1.3rem; }
+    .carousel-btn { font-size: 1.8rem; }
+    .cta-slide h3 { font-size: 1.5rem !important; }
 }
