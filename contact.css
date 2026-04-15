@@ -1,0 +1,204 @@
+/* =========================================
+   PAGINA CONTATTI & EVENTI
+   ========================================= */
+
+/* Spaziatore per compensare la navbar fixed */
+.nav-spacer {
+    height: 120px;
+    background-color: var(--color-bg);
+}
+
+.contact-page {
+    background-color: var(--color-bg);
+}
+
+.contact-wrapper {
+    display: flex;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.shadow-premium {
+    box-shadow: 0 40px 80px rgba(0,0,0,0.06);
+}
+
+/* --- LATO SINISTRO (Info & Immagine) --- */
+.contact-info-panel {
+    flex: 1;
+    background: linear-gradient(rgba(42, 42, 42, 0.8), rgba(42, 42, 42, 0.9)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
+    color: var(--color-white);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info-panel h2 {
+    color: var(--color-white);
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.contact-info-panel p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    max-width: 400px;
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-item strong {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* --- LATO DESTRO (Il Modulo) --- */
+.contact-form-panel {
+    flex: 1.2; /* Prende leggermente più spazio del lato sinistro */
+    padding: 80px 60px;
+    background-color: var(--color-white);
+}
+
+.luxury-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 30px;
+}
+
+.input-group {
+    flex: 1;
+    position: relative;
+}
+
+/* Design dei campi di testo: Niente bordi, solo una linea sotto */
+.form-control {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(142, 124, 104, 0.4); /* Linea tortora chiaro */
+    color: var(--color-text-dark);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: var(--color-text-light);
+    opacity: 0.7;
+}
+
+/* Quando l'utente ci clicca dentro, la linea diventa scura e spessa */
+.form-control:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-text-dark);
+}
+
+/* Specifico per il menù a tendina e la textarea */
+.select-control {
+    cursor: pointer;
+    appearance: none; /* Rimuove lo stile brutto di base del browser */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%238E7C68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right center;
+}
+
+textarea.form-control {
+    resize: none; /* Impedisce di allargare il campo rompendo il layout */
+}
+
+/* --- CHECKBOX PRIVACY ELEGANTE --- */
+.privacy-group {
+    margin-top: 10px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.custom-checkbox input {
+    display: none; /* Nasconde il quadratino brutto di default */
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--color-accent);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background-color: var(--color-accent);
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+}
+
+.privacy-text a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.privacy-text a:hover {
+    border-bottom-color: var(--color-accent);
+}
+
+/* Bottone di invio */
+.submit-btn {
+    margin-top: 20px;
+    width: max-content;
+    padding: 18px 50px;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 920px) {
+    .contact-wrapper {
+        flex-direction: column; /* Impila info sopra e form sotto */
+    }
+
+    .contact-info-panel {
+        padding: 50px 30px;
+    }
+
+    .contact-form-panel {
+        padding: 50px 30px;
+    }
+
+    .form-row {
+        flex-direction: column; /* Impila i campi che erano affiancati */
+        gap: 30px;
+    }
+
+    .contact-info-panel h2 {
+        font-size: 2.2rem;
+    }
+}
