@@ -132,4 +132,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateCarousel();
     }
-});
+
+    // --- 8. GESTIONE TAB EVENTI ---
+    const eventTabs = document.querySelectorAll('.showcase-tab');
+    const eventPanels = document.querySelectorAll('.showcase-panel');
+
+    if (eventTabs.length > 0 && eventPanels.length > 0) {
+        eventTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 1. Rimuovi la classe 'active' da tutti i bottoni e pannelli
+                eventTabs.forEach(t => t.classList.remove('active'));
+                eventPanels.forEach(p => p.classList.remove('active'));
+
+                // 2. Aggiungi la classe 'active' al bottone cliccato
+                tab.classList.add('active');
+
+                // 3. Trova il pannello corrispondente tramite il data-target e mostralo
+                const targetId = tab.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            });
+        });
+    }
+
+}); 
