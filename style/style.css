@@ -567,7 +567,9 @@ h1, h2, h3 {
 }
 
 /* Azione di Hover: Gira la carta sull'asse Y (orizzontale) */
-.flip-card:hover .flip-card-inner {
+/* Azione di Hover (PC) o classe dinamica (Mobile) */
+.flip-card:hover .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
 
@@ -985,5 +987,50 @@ Assicurati di mantenere qui sotto le regole precedenti per .card-image, .card-bo
         font-size: 0.6rem; 
         letter-spacing: 0;
         line-height: 1.1;
+    }
+    /* --- CAROSELLO FLIP CARDS PER SMARTPHONE --- */
+    .services-grid {
+        display: flex; /* Trasforma la griglia in una riga orizzontale */
+        overflow-x: auto; /* Permette lo scorrimento laterale */
+        scroll-snap-type: x mandatory; /* Effetto "calamita" per centrare le carte */
+        gap: 20px;
+        padding-bottom: 30px;
+        /* Nasconde la barra di scorrimento brutta su mobile */
+        scrollbar-width: none; 
+    }
+    /* --- CAROSELLO FLIP CARDS PER SMARTPHONE --- */
+    .services-grid {
+        display: flex; 
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; 
+        gap: 20px;
+        padding-bottom: 40px; /* Aumentiamo un po' lo spazio sotto per far respirare la barra */
+        
+        /* Stile barra per Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent) rgba(75, 120, 90, 0.1);
+    }
+
+    /* Rimuovi la vecchia regola .services-grid::-webkit-scrollbar { display: none; } */
+
+    /* Stile personalizzato elegante per Chrome, Safari, iOS e Android */
+    .services-grid::-webkit-scrollbar {
+        height: 4px; /* Barra molto sottile e minimale */
+    }
+
+    .services-grid::-webkit-scrollbar-track {
+        background: rgba(75, 120, 90, 0.1); /* Traccia di un verde leggerissimo, quasi trasparente */
+        border-radius: 10px;
+        margin: 0 40px; /* Evita che la barra tocchi i bordi dello schermo */
+    }
+
+    .services-grid::-webkit-scrollbar-thumb {
+        background: var(--color-accent); /* Il "cursore" verde foglia vibrante */
+        border-radius: 10px;
+    }
+
+    .service-card.flip-card {
+        flex: 0 0 85%; /* Ogni carta occupa l'85% dello schermo, lasciando intravedere l'altra */
+        scroll-snap-align: center; /* Calamita la carta esattamente al centro */
     }
 }

@@ -157,4 +157,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- FLIP CARD CAROUSEL INTELLIGENTE (SOLO MOBILE) ---
+    // Esegue il codice solo se lo schermo è quello di uno smartphone o tablet
+    if (window.innerWidth <= 1024) {
+        
+        const flipCards = document.querySelectorAll('.flip-card');
+        const servicesGrid = document.querySelector('.services-grid');
+
+        // Configura l'osservatore
+        const flipObserverOptions = {
+            root: servicesGrid, // Osserva l'area di scorrimento
+            rootMargin: '0px',
+            threshold: 0.6 // La carta si gira quando è visibile al 60% (cioè quando è quasi al centro)
+        };
+
+        const flipObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Quando la carta arriva al centro, si scopre
+                    entry.target.classList.add('is-flipped');
+                } else {
+                    // Quando la carta esce dal centro, si copre di nuovo
+                    entry.target.classList.remove('is-flipped');
+                }
+            });
+        }, flipObserverOptions);
+
+        // Attacca l'osservatore a tutte le tue carte
+        flipCards.forEach(card => {
+            flipObserver.observe(card);
+        });
+    }
 }); 
+
