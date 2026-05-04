@@ -1,11 +1,12 @@
 /* =========================================
-   VARIABILI & RESET
+   VARIABILI & RESET (Palette Full Green Elegante)
    ========================================= */
 :root {
-    --color-bg: #F9F8F6; /* Bianco caldo/Crema */
-    --color-text-dark: #2A2A2A; /* Grigio antracite per eleganza */
-    --color-text-light: #666666; /* Grigio tenue per descrizioni */
-    --color-accent: #8E7C68; /* Tonalità terra/tortora */
+    --color-bg: #EDF1EE; /* Verde salvia chiarissimo di base */
+    --color-bg-green: #244030; /* Verde bosco intenso per blocchi di colore interi */
+    --color-text-dark: #12261A; /* Verde nerastro scuro per massima leggibilità */
+    --color-text-light: #4A5D50; /* Verde oliva grigiastro per testi secondari */
+    --color-accent: #4B785A; /* Verde foglia vibrante per bottoni e icone */
     --color-white: #FFFFFF;
     
     --font-heading: 'Playfair Display', serif;
@@ -19,7 +20,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Scorrimento fluido nativo */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -68,14 +69,13 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background-color: transparent; /* Inizialmente trasparente */
+    background-color: transparent; 
     transition: all 0.4s ease-in-out;
 }
 
-/* Stato Navbar quando si scorre la pagina */
 .navbar.scrolled {
     padding: 15px 50px;
-    background-color: rgba(249, 248, 246, 0.98);
+    background-color: rgba(237, 241, 238, 0.98); /* Richiamo al nuovo bg verde salvia */
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
@@ -83,7 +83,7 @@ h1, h2, h3 {
 .logo {
     position: relative;
     height: 60px;
-    z-index: 1002; /* Sempre in primo piano */
+    z-index: 1002;
 }
 
 .logo img {
@@ -96,16 +96,11 @@ h1, h2, h3 {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0; /* Nascosto di default */
+    opacity: 0; 
 }
 
-.navbar.scrolled .logo-light {
-    opacity: 0;
-}
-
-.navbar.scrolled .logo-dark {
-    opacity: 1;
-}
+.navbar.scrolled .logo-light { opacity: 0; }
+.navbar.scrolled .logo-dark { opacity: 1; }
 
 /* --- LINK DESKTOP --- */
 .nav-links {
@@ -120,12 +115,12 @@ h1, h2, h3 {
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
-    color: #FFFFFF; /* Bianchi di default sulla Hero */
+    color: var(--color-white);
     transition: color 0.4s ease;
 }
 
 .navbar.scrolled .nav-links a {
-    color: var(--color-text-dark); /* Diventano scuri allo scroll */
+    color: var(--color-text-dark);
 }
 
 .nav-links a::after {
@@ -135,19 +130,17 @@ h1, h2, h3 {
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: currentColor; /* Il trattino segue il colore del testo */
+    background-color: currentColor;
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
-/* --- SOTTOMENU / DROPDOWN (PC) --- */
-.dropdown {
-    position: relative; /* Fa da "recinto" per il sottomenu */
-}
 
-/* La freccina accanto a Servizi */
+/* --- SOTTOMENU / DROPDOWN (PC) --- */
+.dropdown { position: relative; }
+
 .dropdown-toggle .arrow {
     font-size: 0.7rem;
     margin-left: 4px;
@@ -156,62 +149,87 @@ h1, h2, h3 {
 }
 
 .dropdown:hover .dropdown-toggle .arrow {
-    transform: rotate(180deg); /* Ruota la freccia all'hover */
+    transform: rotate(180deg);
 }
 
-/* Il riquadro del sottomenu */
 .submenu {
     position: absolute;
-    top: 150%; /* Lo posiziona un po' più giù del link principale */
+    top: 150%; 
     left: 50%;
-    transform: translateX(-50%) translateY(15px); /* Centrato rispetto a "Servizi" */
-    background-color: var(--color-bg); /* Sfondo crema */
+    transform: translateX(-50%) translateY(15px);
+    background-color: var(--color-bg); 
     min-width: 220px;
     list-style: none;
     padding: 15px 0;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     border-radius: 4px;
-    
-    /* Nascosto di default con animazione morbida */
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease;
     z-index: 1000;
 }
 
-/* Rende visibile il sottomenu quando si passa su "Servizi" */
 .dropdown:hover .submenu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
-    top: 100%; /* Si attacca esattamente sotto */
+    top: 100%; 
 }
 
-/* Stile dei link nel sottomenu */
-.submenu li {
-    padding: 0;
-}
+.submenu li { padding: 0; }
 
 .submenu a {
     display: block;
     padding: 12px 25px;
-    color: var(--color-text-dark) !important; /* Forza il nero perché lo sfondo è crema */
+    color: var(--color-text-dark) !important;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
-/* Disattiviamo la lineetta sotto ai link del sottomenu */
-.submenu a::after {
-    display: none; 
-}
+.submenu a::after { display: none; }
 
-/* Elegante effetto di scorrimento al passaggio del mouse nel sottomenu */
 .submenu a:hover {
-    background-color: rgba(0,0,0,0.03);
+    background-color: rgba(75, 120, 90, 0.1); /* Hover a tema verde */
     padding-left: 30px; 
 }
+
+/* --- PULSANTE CTA NELLA NAVBAR --- */
+.btn-nav {
+    padding: 10px 22px;
+    border: 1px solid;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem !important;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+}
+
+.navbar .btn-nav {
+    color: var(--color-white) !important;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar.scrolled .btn-nav {
+    color: var(--color-text-dark) !important;
+    border-color: var(--color-accent); 
+}
+
+.navbar .btn-nav:hover {
+    background-color: var(--color-white);
+    color: var(--color-text-dark) !important;
+}
+
+.navbar.scrolled .btn-nav:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white) !important;
+}
+
+.btn-nav::after { display: none !important; }
+
 /* --- ICONA HAMBURGER (Nascosta su PC) --- */
 .menu-toggle {
     display: none;
@@ -224,16 +242,16 @@ h1, h2, h3 {
     width: 25px;
     height: 2px;
     margin: 5px auto;
-    background-color: #FFFFFF; /* Bianco di default */
+    background-color: var(--color-white); 
     transition: all 0.3s ease-in-out;
 }
 
 .navbar.scrolled .menu-toggle .bar {
-    background-color: var(--color-text-dark); /* Nero allo scroll */
+    background-color: var(--color-text-dark);
 }
 
 .menu-toggle.active .bar {
-    background-color: #FFFFFF !important; /* Forza il bianco se il menu è aperto */
+    background-color: var(--color-white) !important; 
 }
 
 /* =========================================
@@ -267,7 +285,8 @@ h1, h2, h3 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    /* Gradiente verde scuro per la hero */
+    background: linear-gradient(rgba(26, 51, 36, 0.65), rgba(26, 51, 36, 0.3));
     z-index: 1;
 }
 
@@ -337,11 +356,39 @@ h1, h2, h3 {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
+/* Carosello Immagini Affiancate */
+.carosello-container {
+    flex: 1; 
+    width: 100%;
+    min-width: 0; 
+}
+
+.carosello-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.5rem; 
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) transparent;
+}
+
+.carosello-scroll img {
+    flex: 0 0 85%; 
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    scroll-snap-align: center; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 4px solid var(--color-white);
+}
+
 /* =========================================
-   SERVICES GRID
+   SERVICES GRID (Immerso nel verde)
    ========================================= */
 .services-section {
-    background-color: var(--color-white);
+    background-color: #DFE8E2; /* Sfondo verde salvia tenue */
 }
 
 .services-grid {
@@ -351,10 +398,11 @@ h1, h2, h3 {
 }
 
 .service-card {
-    background: var(--color-bg);
+    background: var(--color-white);
     border-radius: 4px;
     overflow: hidden;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(75, 120, 90, 0.1); /* Leggero bordo verde */
 }
 
 .service-card:hover {
@@ -362,7 +410,6 @@ h1, h2, h3 {
     box-shadow: 0 15px 30px rgba(0,0,0,0.08);
 }
 
-/* --- GESTIONE IMMAGINI CAROSELLO --- */
 .card-image {
     position: relative;
     width: 100%;
@@ -371,31 +418,26 @@ h1, h2, h3 {
 }
 
 .card-image img {
-    position: absolute; /* Sovrappone tutte le immagini una sull'altra */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute; 
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-    opacity: 0; /* Nasconde tutte le immagini di base */
+    opacity: 0; 
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Mostra solo l'immagine con la classe active */
-.card-image img.active {
-    opacity: 1; 
-}
+.card-image img.active { opacity: 1; }
 
-/* Lieve zoom quando l'immagine è attiva e c'è l'hover */
 .service-card:hover .card-image img.active {
     transform: scale(1.05); 
 }
 
-/* --- DESIGN DEL LINK "SCOPRI DI PIÙ" --- */
+.card-body { padding: 20px; }
+
 .card-link {
     display: inline-block;
     margin-top: 20px;
-    color: var(--color-accent); /* Usa il colore terra/tortora */
+    color: var(--color-accent); 
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.85rem;
@@ -404,30 +446,330 @@ h1, h2, h3 {
     transition: all 0.3s ease;
 }
 
-/* Aggiungiamo una freccina elegante che si muove all'hover */
+
 .card-link::after {
     content: '→';
     margin-left: 5px;
     transition: margin-left 0.3s ease;
 }
 
-.card-link:hover {
-    color: var(--color-text-dark); /* Diventa scuro al passaggio del mouse */
+.card-link:hover { color: var(--color-text-dark); }
+.card-link:hover::after { margin-left: 10px; }
+
+/* =========================================
+   SEZIONE EVENTI (Cerchi ed elementi decorativi)
+   ========================================= */
+.events-section {
+    background-color: var(--color-white); 
+    position: relative; 
+    overflow-x: clip; 
 }
 
-.card-link:hover::after {
-    margin-left: 10px; /* La freccia scatta in avanti */
+.events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 40px; 
+    position: relative;
+    z-index: 2; 
 }
 
-.card-body {
-    padding: 20px;
+.decor-side {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    width: 320px; 
+    height: 500px; 
+    object-fit: cover;
+    border-radius: 50px; 
+    z-index: 0; 
+    opacity: 0.8; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.6s ease;
+}
+
+.decor-left { left: -160px; }
+.decor-right { right: -160px; }
+
+.events-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 40px; 
+}
+
+.event-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent); /* Bordo verde */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.event-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 15px;
+    color: var(--color-accent); 
+    transition: color 0.4s ease;
+}
+
+.event-circle h3 {
+    font-size: 1.05rem;
+    font-family: var(--font-heading);
+    color: var(--color-text-dark);
+    margin: 0;
+    transition: color 0.4s ease;
+}
+
+.event-circle:hover {
+    background-color: var(--color-bg-green); 
+    border-color: var(--color-bg-green);
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(36, 64, 48, 0.3);
+}
+
+.event-circle:hover .event-icon,
+.event-circle:hover h3 {
+    color: var(--color-white); 
+}
+
+/* =========================================
+   FLIP CARDS 3D (Servizi)
+   ========================================= */
+
+/* Il contenitore base che abilita la prospettiva 3D */
+.flip-card {
+    background-color: transparent;
+    border: none;
+    perspective: 1000px; /* Crea l'effetto di profondità 3D */
+    height: 600px; /* IMPORTANTE: Definisci un'altezza fissa perché il contenuto in absolute non dà altezza automatica */
+    width: 100%;
+}
+
+/* L'elemento che effettivamente ruota */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Curva fluida ed elegante */
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Azione di Hover: Gira la carta sull'asse Y (orizzontale) */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Regole comuni per Fronte e Retro */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Nasconde il retro quando è girata per Safari */
+    backface-visibility: hidden;         /* Nasconde il retro quando è girata */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* --- FRONTE DELLA CARTA --- */
+.flip-card-front {
+    background-color: var(--color-bg-green); /* Se l'immagine non carica, c'è il verde bosco */
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay per il fronte: per far leggere il testo sull'immagine */
+.front-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(36, 64, 48, 0.2), rgba(36, 64, 48, 0.8));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px 20px;
+    color: var(--color-white);
+}
+
+.front-overlay h3 {
+    color: var(--color-white);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.front-overlay span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+}
+
+/* Lieve animazione del testo interno quando l'utente si avvicina */
+.flip-card:hover .front-overlay h3,
+.flip-card:hover .front-overlay span {
+    transform: translateY(0);
+}
+
+/* --- RETRO DELLA CARTA --- */
+.flip-card-back {
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
+    transform: rotateY(180deg); /* Questo elemento parte già girato di 180 gradi */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+Assicurati di mantenere qui sotto le regole precedenti per .card-image, .card-body, .card-link e iframe
+(Queste non cambiano, le ereditano dal retro della carta)
+*/
+
+/* =========================================
+   SEZIONE RECENSIONI (Color Block Verde Bosco)
+   ========================================= */
+.reviews-section {
+    background-color: var(--color-bg-green);
+    border-top: none;
+    color: var(--color-white);
+}
+
+.reviews-section .section-title,
+.reviews-section .review-text,
+.reviews-section .review-author {
+    color: var(--color-white);
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track-wrapper {
+    overflow: hidden; 
+    width: 100%;
+    padding: 20px 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.carousel-slide {
+    min-width: 100%; 
+    padding: 0 50px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.review-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Stelle Verde Menta pastello */
+.stars {
+    color: #A3C2A3; 
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.review-text {
+    font-family: var(--font-heading); 
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.review-author {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.carousel-btn {
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--color-white);
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    color: var(--color-white);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+    transform: none;
+}
+
+.btn-dark {
+    border-color: var(--color-white);
+    color: var(--color-white);
+}
+
+.btn-dark:hover {
+    background-color: var(--color-white);
+    color: var(--color-bg-green);
+}
+
+/* =========================================
+   PLAYER SPOTIFY INTEGRATO
+   ========================================= */
+.spotify-player {
+    border-radius: 8px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 100%;
+    /* Decommenta la riga qui sotto se vuoi forzare l'intero player ai toni del verde salvia */
+     filter: sepia(0.7) hue-rotate(70deg) saturate(0.8); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Leggero effetto elegante al passaggio del mouse sul player */
+.spotify-player:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(36, 64, 48, 0.15);
 }
 
 /* =========================================
    FOOTER
    ========================================= */
 .footer {
-    background-color: var(--color-text-dark);
+    background-color: #0E1D14; /* Verde foresta quasi nero */
     color: var(--color-white);
     padding: 80px 0 30px;
 }
@@ -441,50 +783,38 @@ h1, h2, h3 {
     margin-bottom: 30px;
 }
 
+.footer-logo-container {
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 15px;
+}
+
+.footer-logo {
+    height: 45px; 
+    width: auto;
+    opacity: 0.9; 
+}
+
+.footer-logo2 {
+    height: 70px; 
+    width: auto;
+    opacity: 0.9; 
+}
+
 .footer-brand h2 {
     color: var(--color-white);
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
-.footer-brand p {
-    color: #999;
-}
-
-.footer-info p {
-    margin-bottom: 10px;
-    color: #ccc;
-}
+.footer-brand p { color: #999; }
+.footer-info p { margin-bottom: 10px; color: #ccc; }
 
 .footer-bottom {
     text-align: center;
     color: #777;
     font-size: 0.85rem;
-}
-/* --- GESTIONE LOGO NEL FOOTER --- */
-.footer-logo-container {
-    display: flex; /* Mette gli elementi in riga */
-    align-items: center; /* Li centra verticalmente */
-    gap: 15px; /* Spazio elegante tra il logo e il nome */
-    margin-bottom: 15px;
-}
-
-.footer-logo {
-    height: 45px; /* Logo leggermente più piccolo rispetto alla navbar */
-    width: auto;
-    opacity: 0.9; /* Leggermente opaco per eleganza sul fondo scuro */
-}
-
-.footer-logo2 {
-    height: 70px; /* Logo leggermente più piccolo rispetto alla navbar */
-    width: auto;
-    opacity: 0.9; /* Leggermente opaco per eleganza sul fondo scuro */
-}
-
-
-
-.footer-brand p {
-    color: #999;
 }
 
 /* =========================================
@@ -515,489 +845,145 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   SEZIONE RECENSIONI (CAROSELLO)
+   RESPONSIVITÀ E MEDIA QUERIES (Cascata)
    ========================================= */
-.reviews-section {
-    background-color: var(--color-bg); /* Mantiene lo sfondo crema */
-    border-top: 1px solid rgba(0,0,0,0.05); /* Lieve separazione visiva */
-}
 
-.carousel-container {
-    position: relative;
-    max-width: 900px; /* Non troppo largo, per facilitare la lettura */
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-}
-
-.carousel-track-wrapper {
-    overflow: hidden; /* Nasconde le slide che escono dallo schermo */
-    width: 100%;
-    padding: 20px 0;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Animazione morbida ed elegante */
-}
-
-.carousel-slide {
-    min-width: 100%; /* Ogni slide occupa il 100% dello spazio visibile */
-    padding: 0 50px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.review-content {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.stars {
-    color: var(--color-accent); /* Colore tortora per le stelle */
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
-.review-text {
-    font-family: var(--font-heading); /* Font elegante Serif */
-    font-size: 1.8rem;
-    font-style: italic;
-    line-height: 1.5;
-    color: var(--color-text-dark);
-    margin-bottom: 30px;
-}
-
-.review-author {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-text-light);
-}
-
-/* Stile bottoni freccia */
-.carousel-btn {
-    background: transparent;
-    border: none;
-    font-size: 2.5rem;
-    color: var(--color-text-light);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 10px;
-    z-index: 10;
-}
-
-.carousel-btn:hover {
-    color: var(--color-text-dark);
-    transform: scale(1.1);
-}
-
-/* Quando si arriva all'inizio o alla fine, la freccia si sbiadisce */
-.carousel-btn:disabled {
-    opacity: 0.2;
-    cursor: default;
-    transform: none;
-}
-
-/* Bottone per l'ultima slide */
-.btn-dark {
-    border-color: var(--color-text-dark);
-    color: var(--color-text-dark);
-}
-
-.btn-dark:hover {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
-}
-
-/* --- PULSANTE CTA NELLA NAVBAR --- */
-.btn-nav {
-    padding: 10px 22px;
-    border: 1px solid; /* Il colore verrà definito dagli stati sotto */
-    border-radius: 2px;
-    text-transform: uppercase;
-    font-size: 0.8rem !important; /* Leggermente più piccolo per eleganza */
-    letter-spacing: 2px;
-    font-weight: 700;
-    transition: all 0.4s ease-in-out;
-    text-decoration: none;
-}
-
-/* 1. Stato sulla Hero (Navbar trasparente) */
-.navbar .btn-nav {
-    color: #FFFFFF !important;
-    border-color: rgba(255, 255, 255, 0.5); /* Contorno bianco semitrasparente */
-}
-
-/* 2. Stato Scrolled (Navbar crema) */
-.navbar.scrolled .btn-nav {
-    color: var(--color-text-dark) !important;
-    border-color: var(--color-accent); /* Contorno color tortora/terra */
-}
-
-/* Effetto Hover (riempimento) */
-.navbar .btn-nav:hover {
-    background-color: #FFFFFF;
-    color: var(--color-text-dark) !important;
-}
-
-.navbar.scrolled .btn-nav:hover {
-    background-color: var(--color-accent);
-    color: #FFFFFF !important;
-}
-
-/* Rimuoviamo la linea sotto l'hover per questo pulsante specifico */
-.btn-nav::after {
-    display: none !important;
-}
-
-.carosello-container {
-    flex: 1; /* Prende l'altra metà dello spazio */
-    width: 100%;
-    min-width: 0; /* Previene problemi di overflow in flexbox */
-}
-
-.carosello-scroll {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    /* La magia dello scroll snap */
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1.5rem; /* Spazio per la barra di scorrimento */
+/* --- TABLET (Fino a 1024px) --- */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 3.2rem; }
+    .layout-split { gap: 30px; } 
     
-    /* Nasconde la barra di scorrimento su alcuni browser per estetica */
-    scrollbar-width: thin;
-    scrollbar-color: var(--giallo-primario) transparent;
+    .events-row { gap: 20px; }
+    .event-circle { width: 130px; height: 130px; }
+    .event-icon { width: 35px; height: 35px; }
+
+    .decor-side { width: 200px; height: 350px; border-radius: 100px; }
+    .decor-left { left: -100px; }
+    .decor-right { right: -100px; }
 }
 
-/* Stile delle foto nel carosello */
-.carosello-scroll img {
-    flex: 0 0 85%; /* Ogni foto prende l'85% dello spazio, lasciando intravedere la successiva */
-    max-width: 400px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-    scroll-snap-align: center; /* Ferma lo scorrimento esattamente al centro dell'immagine */
-    box-shadow: 0 10px 20px rgba(30, 58, 138, 0.1);
-    border: 4px solid var(--bianco);
-}
-
-.scroll-hint {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--blu-primario);
-    margin-top: -0.5rem;
-    font-weight: 600;
-}
-
-
-/* =========================================
-   SEZIONE EVENTI (CERCHI SU DUE RIGHE)
-   ========================================= */
-/* =========================================
-   SEZIONE EVENTI (CERCHI + DECORAZIONI LATERALI)
-   ========================================= */
-.events-section {
-    background-color: var(--color-white); 
-    position: relative; /* FONDAMENTALE: Fa da recinto per le foto assolute */
-    overflow-x: clip; /* FONDAMENTALE: Taglia la metà della foto che esce dallo schermo senza creare barre di scorrimento orizzontali */
-}
-
-/* Proteggiamo i cerchi per farli stare sempre SOPRA le foto laterali */
-.events-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 40px; 
-    position: relative;
-    z-index: 2; /* Livello superiore */
-}
-
-/* --- LE IMMAGINI CHE ESCONO DAL BORDO --- */
-.decor-side {
-    position: absolute;
-    top: 50%; /* Le centra verticalmente rispetto a tutta la sezione */
-    transform: translateY(-50%);
-    width: 320px; /* Larghezza della foto */
-    height: 500px; /* Altezza della foto (forma allungata) */
-    object-fit: cover;
-    border-radius: 50px; /* Metà della larghezza: crea l'effetto a "pillola" */
-    z-index: 0; /* Livello inferiore (sotto ai cerchi) */
-    opacity: 0.8; /* Leggermente in trasparenza per non rubare troppo l'attenzione */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    transition: transform 0.6s ease;
-}
-
-/* Foto di Sinistra: La spingiamo fuori a sinistra per metà della sua larghezza (-160px) */
-.decor-left {
-    left: -160px; 
-}
-
-/* Foto di Destra: La spingiamo fuori a destra per metà della sua larghezza (-160px) */
-.decor-right {
-    right: -160px;
-}
-
-.events-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra le righe rispetto alla pagina */
-    gap: 40px; /* Spazio verticale tra la prima e la seconda riga */
-}
-
-.events-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Fondamentale per farli andare a capo su mobile */
-    gap: 40px; /* Spazio orizzontale tra i cerchi */
-}
-
-.event-circle {
-    width: 160px; /* Stessa larghezza... */
-    height: 160px; /* ...e stessa altezza per un quadrato perfetto */
-    border-radius: 50%; /* Trasforma il quadrato in un cerchio perfetto */
-    border: 1px solid rgba(142, 124, 104, 0.3); 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-bg);
-    transition: all 0.4s ease;
-    cursor: pointer;
-    text-align: center;
-}
-
-.event-icon {
-    width: 45px;
-    height: 45px;
-    margin-bottom: 15px;
-    color: var(--color-accent); 
-    transition: color 0.4s ease;
-}
-
-.event-circle h3 {
-    font-size: 1.05rem;
-    font-family: var(--font-heading);
-    color: var(--color-text-dark);
-    margin: 0;
-    transition: color 0.4s ease;
-}
-
-/* --- Effetto Hover --- */
-.event-circle:hover {
-    background-color: var(--color-accent); 
-    transform: translateY(-10px); 
-    box-shadow: 0 15px 30px rgba(142, 124, 104, 0.2);
-    border-color: var(--color-accent);
-}
-
-.event-circle:hover .event-icon,
-.event-circle:hover h3 {
-    color: var(--color-white); 
-}
-
-/* Modifiche per il Mobile (Aggiungi questo DENTRO il tuo blocco @media (max-width: 768px)) */
-
-/* =========================================
-   RESPONSIVITÀ (MEDIA QUERIES)
-   ========================================= */
-
-
+/* --- TABLET VERTICALI & MOBILE MENU (Fino a 920px) --- */
 @media (max-width: 920px) {
-    /* Navbar Mobile */
     .navbar { padding: 15px 25px; }
     .logo { height: 45px; }
-    .hero h1 { font-size: 2.2rem; }
+    .hero h1 { font-size: 2.5rem; }
     
     .menu-toggle { display: block; }
 
-    /* MENU FULL SCREEN SCURO */
+    /* Menu Full Screen Scuro a tema verde */
     nav {
         position: fixed;
-        top: 0; 
-        left: 0;
-        width: 100vw; 
-        height: 100vh;
-        background: rgba(42, 42, 42, 0.98);
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(26, 51, 36, 0.98);
         backdrop-filter: blur(10px);
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0;
-        visibility: hidden; /* Nascosto di default */
+        visibility: hidden;
         transition: all 0.4s ease-in-out;
-        z-index: 1001; /* Sotto all'icona hamburger */
+        z-index: 1001;
     }
 
-    nav.active {
-        opacity: 1;
-        visibility: visible;
-    }
+    nav.active { opacity: 1; visibility: visible; }
 
-    /* Stile link del menu mobile */
-    .nav-links {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-    }
-
-    .nav-links a {
+    .nav-links { flex-direction: column; gap: 30px; text-align: center; }
+    
+    .navbar .nav-links a,
+    .navbar.scrolled .nav-links a {
         font-family: var(--font-heading);
         font-size: 2rem;
-        color: #FFFFFF !important; /* Sempre bianco */
+        color: var(--color-white) !important; 
         text-transform: none;
     }
 
     .nav-links a::after { bottom: -10px; }
 
-    /* Animazione X Hamburger Mobile */
+    .navbar .btn-nav,
+    .navbar.scrolled .btn-nav {
+        color: var(--color-white) !important;
+        border-color: var(--color-accent) !important;
+    }
+
+    /* Animazione X Hamburger */
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    /* --- SOTTOMENU MOBILE (Fisarmonica) --- */
-    .dropdown {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
 
+    /* SOTTOMENU MOBILE (Fisarmonica) */
+    .dropdown { display: flex; flex-direction: column; align-items: center; width: 100%; }
+    
     .submenu {
-        position: static; /* Rimuove il posizionamento fluttuante del PC */
-        transform: none;
-        background-color: transparent;
-        box-shadow: none;
-        min-width: 100%;
-        padding: 0;
-        
-        /* Chiuso di default (altezza zero) */
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.5s ease;
+        position: static; transform: none; background-color: transparent;
+        box-shadow: none; min-width: 100%; padding: 0;
+        max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: all 0.5s ease;
     }
 
-    /* Classe aggiunta tramite Javascript al tocco */
-    .submenu.open {
-        max-height: 250px; /* Abbastanza alto per mostrare i link */
-        padding-top: 20px;
-        opacity: 1;
-        visibility: visible;
-    }
+    .submenu.open { max-height: 250px; padding-top: 20px; opacity: 1; visibility: visible; }
 
-    .submenu a {
-        font-family: var(--font-body); /* Font più moderno e leggibile */
-        font-size: 1.1rem; /* Più piccolo rispetto ai link principali */
-        color: rgba(255, 255, 255, 0.7) !important; /* Bianco leggermente trasparente */
+    .navbar .submenu a,
+    .navbar.scrolled .submenu a {
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7) !important;
         padding: 10px 0;
         letter-spacing: 2px;
     }
 
-    .submenu a:hover {
-        padding-left: 0;
-        background-color: transparent;
-        color: #FFFFFF !important;
+    .navbar .submenu a:hover,
+    .navbar.scrolled .submenu a:hover {
+        padding-left: 0; background-color: transparent; color: var(--color-white) !important;
     }
-    /* Adattamenti Carosello Mobile */
+
+    /* Concept diventa 1 colonna */
+    .layout-split {
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+        text-align: center; 
+    }
+    
+    .layout-split .text-content { order: -1; }
+    .text-content h2 { font-size: 2.2rem; margin-bottom: 20px; }
+    .text-content p { font-size: 1.05rem; padding: 0 10px; }
+
     .carousel-slide { padding: 0 10px; }
     .review-text { font-size: 1.3rem; }
     .carousel-btn { font-size: 1.8rem; }
-    .cta-slide h3 { font-size: 1.5rem !important; }
+}
 
-    
-
-    /* --- FIX: SEZIONE CONCEPT (IL BORGO) SU MOBILE --- */
-    .layout-split {
-        grid-template-columns: 1fr; /* Forza tutto su una singola colonna */
-        gap: 40px; /* Crea un bel respiro tra il testo e la foto */
-        text-align: center; /* Centra il testo per un look più "editoriale" */
-    }
-
-    /* Adattamento elegante dei testi del Concept per smartphone */
-    .text-content h2 {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-    }
-
-    .text-content p {
-        font-size: 1.05rem;
-        padding: 0 10px; /* Evita che il testo tocchi i bordi dello schermo */
-    }
-
-    /* L'immagine riempie tutto lo spazio disponibile */
-    .image-content img {
-        width: 100%;
-        height: auto;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Ombra più morbida per mobile */
-    }
-  
-    /* --- FIX: ORDINE TESTO-IMMAGINE SU MOBILE --- */
-    .layout-split .text-content {
-        order: -1; /* Forza il testo a salire sempre in prima posizione */
-    }
-
-    /* =========================================
-       FIX: FORZA COLORI CHIARI NEL MENU MOBILE 
-       ========================================= */
-    /* Batte la specificità dello stato "scrolled" del PC */
-    .navbar .nav-links a,
-    .navbar.scrolled .nav-links a {
-        color: #FFFFFF !important; 
-    }
-
-    .navbar .submenu a,
-    .navbar.scrolled .submenu a {
-        color: rgba(255, 255, 255, 0.7) !important;
-    }
-
-    .navbar .submenu a:hover,
-    .navbar.scrolled .submenu a:hover {
-        color: #FFFFFF !important;
-    }
-
-    .navbar .btn-nav,
-    .navbar.scrolled .btn-nav {
-        color: #FFFFFF !important;
-        border-color: var(--color-accent) !important;
-    }
+/* --- SMARTPHONE (Fino a 768px) --- */
+@media (max-width: 768px) {
+    .decor-side { display: none; } 
 
     .events-container {
-        gap: 20px; /* Spazio verticale tra la prima e la seconda riga */
-        padding: 0 5px; /* Evita che i cerchi tocchino il bordo del telefono */
+        gap: 20px; 
+        padding: 0 5px; 
     }
 
     .events-row {
-        flex-wrap: nowrap; /* FONDAMENTALE: Impedisce ai cerchi di andare a capo */
-        gap: 8px; /* Spazio orizzontale ridotto al minimo tra i cerchi */
+        flex-wrap: nowrap; 
+        gap: 8px; 
         width: 100%;
         justify-content: center;
     }
     
     .event-circle {
-        width: 100px; /* Cerchi molto più piccoli per farne stare 4 in fila */
-        height: 100px;
+        width: 90px; 
+        height: 90px;
         padding: 5px;
     }
     
     .event-icon {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         margin-bottom: 5px;
-        stroke-width: 1.5; /* Inspessiamo un po' l'icona perché è più piccola */
+        stroke-width: 1.5; 
     }
     
     .event-circle h3 {
-        font-size: 0.65rem; /* Testo minuscolo ma leggibile */
+        font-size: 0.6rem; 
         letter-spacing: 0;
         line-height: 1.1;
     }
-
-
-    /* Nascondiamo le foto laterali su smartphone per non sovrapporle ai cerchi */
-    .decor-side {
-        display: none;
-    }    
-    
 }

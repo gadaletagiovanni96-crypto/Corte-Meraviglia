@@ -10,7 +10,37 @@
 </head>
 <body>
 
-    <main>
+    <header class="navbar fade-in">
+    <div class="logo">
+        <img src="assets/logo_bianco.png" alt="Corte Meraviglia Logo" class="logo-light">
+        <img src="assets/logo_nero.png" alt="Corte Meraviglia Logo" class="logo-dark">
+    </div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Il Borgo</a></li>
+                
+                <li class="dropdown">
+                    <a href="#services" class="dropdown-toggle">Servizi <span class="arrow">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="ristorante.html">Il Ristorante</a></li>
+                        <li><a href="ricevimenti.html">Ricevimenti</a></li>
+                        <li><a href="#link-relais">B&B Relais</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#reviews">Recensioni</a></li>
+                <li><a href="#contact">Contatti</a></li>
+                <li><a href="contatti.html" class="btn-nav">Crea il tuo evento</a></li>
+            </ul>
+        </nav>
+</header>
+
         <section class="page-hero">
             <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Allestimento Eventi" class="page-hero-bg">
             <div class="page-hero-overlay"></div>
@@ -33,17 +63,17 @@
         <section class="event-showcase section-padding">
             <div class="container">
                 
-                <div class="showcase-tabs reveal">
+                <div class="showcase-tabs slide-up">
                     <button class="showcase-tab active" data-target="matrimoni">Matrimoni</button>
                     <button class="showcase-tab" data-target="diciottesimi">18esimi</button>
                     <button class="showcase-tab" data-target="lauree">Lauree</button>
                     <button class="showcase-tab" data-target="battesimi">Battesimi</button>
                     <button class="showcase-tab" data-target="comunioni">Comunioni</button>
-                    <button class="showcase-tab" data-target="compleanni">Compleanni</button>
+                    <button class="showcase-tab" data-target="compleanni">Compleanni</button> 
                     <button class="showcase-tab" data-target="romantiche">Cene Romantiche</button>
                 </div>
 
-                <div class="showcase-content-wrapper reveal">
+                <div class="showcase-content-wrapper slide-up" style="animation-delay: 0.2s;">
                     
                     <div class="showcase-panel active" id="matrimoni">
                         <div class="panel-image">
@@ -52,7 +82,112 @@
                         <div class="panel-text">
                             <h3>Il Giorno Perfetto</h3>
                             <p>Dalla cerimonia simbolica nella corte antica al grande ricevimento nella limonaia di vetro. Curiamo ogni dettaglio, dagli allestimenti floreali al menù stellato, affinché il vostro sì sia circondato solo da pura bellezza e zero stress.</p>
+                            <a href="#menu-matrimoni" class="card-link">Scopri il menù consigliato dallo chef</a>
                         </div>
+
+                        <section class="menu-section section-padding" id="menu-matrimoni">
+                            <div class="container">
+                                <div class="menu-parchment slide-up">
+                                    <div class="menu-top-photo">
+                                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Piatto Gourmet di Alta Cucina">
+                                    </div>
+                                    <div class="menu-body">
+                                        <div class="menu-inner-border">
+                                            <h2 class="menu-title">Il Menù Consigliato</h2>
+                                            
+                                            <h3 class="menu-category">Antipasti</h3>
+                                            <div class="menu-item">
+                                                <h4>Capesante scottate, topinambur e liquirizia</h4>
+                                                <p>Un contrasto delicato tra la dolcezza del mare e le note terrose del sottobosco.</p>
+                                                <span class="price">€ 24</span>
+                                            </div>
+                                            <div class="menu-item">
+                                                <h4>Battuta di fassona, tuorlo fritto e tartufo nero</h4>
+                                                <p>Tagliata rigorosamente al coltello, servita con senape antica e scaglie di tartufo fresco.</p>
+                                                <span class="price">€ 28</span>
+                                            </div>
+
+                                            <h3 class="menu-category">Primi</h3>
+                                            <div class="menu-item">
+                                                <h4>Risotto Riserva, zafferano e midollo</h4>
+                                                <p>La tradizione milanese rivisitata con una riduzione di fondo bruno e foglia d'oro.</p>
+                                                <span class="price">€ 32</span>
+                                            </div>
+                                            <div class="menu-item">
+                                                <h4>Bottoni ripieni di burrata e gambero rosso</h4>
+                                                <p>Pasta fresca tirata a mano, crudo di Mazara del Vallo e consommé di crostacei.</p>
+                                                <span class="price">€ 30</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        </div>
+
+                    <div class="showcase-panel" id="diciottesimi">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festa 18 anni">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Un Traguardo di Stile</h3>
+                            <p>Festeggia la maggiore età con un evento che unisce l'eleganza del borgo all'energia di un party esclusivo. DJ set, open bar premium e isole gastronomiche dinamiche per sorprendere tutti i tuoi invitati.</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-panel" id="lauree">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brindisi di Laurea">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Il Sapore del Successo</h3>
+                            <p>Dopo tanta fatica, meriti una celebrazione impeccabile. Organizziamo raffinati aperitivi rinforzati o cene placé per brindare al tuo futuro insieme alla famiglia e agli amici più stretti.</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-panel" id="battesimi">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Battesimo">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Dolci Inizi</h3>
+                            <p>Un'atmosfera intima, luminosa e delicata. Creiamo allestimenti tenui e menù leggeri, perfetti per accogliere i nuovi arrivati in un ambiente sereno, con spazi pensati anche per il comfort dei più piccoli.</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-panel" id="comunioni">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Comunione">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Feste in Famiglia</h3>
+                            <p>Uniamo l'eleganza che i grandi desiderano con la libertà di cui i bambini hanno bisogno. Spazi aperti e sicuri nel nostro borgo si combinano a un servizio attento e a un'offerta culinaria pensata per tutte le età.</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-panel" id="compleanni">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1530103862676-de3c9de59fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Compleanno Elegante">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Il Tuo Giorno Speciale</h3>
+                            <p>Che sia un traguardo importante come i 30 o i 50 anni, o semplicemente la voglia di stare insieme, trasformiamo il tuo compleanno in una serata magica, personalizzando la musica, la torta e l'intrattenimento.</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-panel" id="romantiche">
+                        <div class="panel-image">
+                            <img src="https://images.unsplash.com/photo-1549488344-c2889240eb76?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cena Romantica">
+                        </div>
+                        <div class="panel-text">
+                            <h3>Per Due</h3>
+                            <p>Sorprendi chi ami con un'esperienza esclusiva. Un tavolo privato allestito negli angoli più segreti e suggestivi del borgo, luce soffusa, candele e un menù degustazione raccontato personalmente dal nostro Chef.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
                     </div>
 
                     <div class="showcase-panel" id="diciottesimi">
@@ -121,11 +256,30 @@
 
         <section class="page-cta section-padding text-center">
             <div class="container reveal">
-                <h3>Pronto a progettare il tuo evento?</h3>
-                <a href="contatti.html" class="btn btn-dark">Crea il tuo evento</a>
+                <h3 style="margin-bottom: 30px;">Pronto a vivere la tua esperienza?</h3>
+                <a href="contatti.html" class="btn btn-dark">Contattaci Ora</a>
             </div>
         </section>
-    </main>
+
+        <footer id="contact" class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-container">
+                    <img src="assets/logo_bianco_piccolo.png" alt="Corte Meraviglia Logo" class="footer-logo">
+                    <img src="assets/logo_bianco_scritta.png" alt="Corte Meraviglia Logo" class="footer-logo2">
+                </div>
+                <p>L'eleganza si nasconde nei dettagli.</p>
+            </div>
+            <div class="footer-info">
+                <p>📍 Via Roma 123, 00100 Borgo Antico (IT)</p>
+                <p>📞 +39 012 3456789</p>
+                <p>✉️ info@cortemeraviglia.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Corte Meraviglia. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
 
     <script src="script.js" defer></script>
 </body>
