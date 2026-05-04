@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corte Meraviglia | Ristorante, Ricevimenti & B&B</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css?v=4.0">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
@@ -64,15 +64,26 @@
         <div class="container layout-split">
             <div class="carosello-container">
                 <div class="carosello-scroll">
-                    <img src="assets/chiaromonte/chiaromonte2.png" alt="Musica">
-                    <img src="assets/chiaromonte/chiaromonte1.png" alt="Chef">
+                    
+                    <img src="assets/chiaromonte/chiaromonte2.png" alt="Chef">
                     <img src="assets/chiaromonte/chiaromonte3.jpg" alt="Piatto">
+
+                    <div class="spotify-slide">
+        <!-- L'immagine di sfondo -->
+        <img src="assets/chiaromonte/chiaromonte1.png" alt="Piatto">
+        <!-- L'effetto scuro -->
+        <div class="spotify-overlay"></div>
+        <!-- LA NUOVA SCRITTA EMOZIONALE -->
+        <span class="spotify-caption">Lascia che la bellezza diventi melodia</span>
+        <!-- Il player -->
+        <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
                 </div>
             </div>
             <div class="text-content reveal">
                 <h2>La bellezza della Terra Lucana</h2>
-                <p>Crediamo che ogni evento debba essere un'opera d'arte irripetibile, cucita su misura intorno ai vostri desideri. La nostra tenuta storica non è un semplice contenitore, ma un'oasi pronta ad accogliere la vostra personalità.</p>
-                <p>Che sogniate un ricevimento intimo a lume di candela o una festa sfarzosa sotto le stelle, vi offriamo la libertà assoluta di plasmare gli spazi e l'atmosfera.</p>
+                <p>La Basilicata è una terra segreta e preziosa, dove l'eleganza nasce dalla natura più autentica. È un respiro profondo tra boschi incontaminati e calanchi scultorei, un incontro poetico tra la pietra millenaria dei suoi antichi borghi e la purezza delle sue acque.</p>
+                <a href="https://www.basilicataturistica.it/territori/chiaromonte/" class="card-link">Scopri di più</a>
             </div>
         </div>
     </section>
@@ -92,7 +103,7 @@
                 <img src="assets/carte/denari.png" alt="Copertina Ristorante">
                 <div class="front-overlay">
                     <h2 style="color: var(--color-primary);">Il Ristorante</h2>
-                    
+                    <span>Tocca per scoprire</span>
                 </div>
             </div>
             
@@ -124,7 +135,7 @@
                 <img src="assets/carte/coppa.png" alt="Copertina Ricevimenti">
                 <div class="front-overlay">
                     <h2 style="color: var(--color-primary);">Eventi & Ricevimenti</h2>
-                    
+                    <span>Tocca per scoprire</span>
                 </div>
             </div>
             
@@ -155,7 +166,7 @@
                 <img src="assets/carte/pep.png" alt="Copertina Relais">
                 <div class="front-overlay">
                     <h2 style="color: var(--color-primary);">Il Relais B&B</h2>
-                    
+                    <span>Tocca per scoprire</span>
                 </div>
             </div>
             
@@ -182,80 +193,95 @@
     </section>
 
     <section id="events" class="events-section section-padding">
-
         <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Decorazione floreale" class="decor-side decor-left reveal">
         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Calici di cristallo" class="decor-side decor-right reveal">
         
         <div class="container">
             <h2 class="section-title reveal">Le Tue Celebrazioni</h2>
             
-            <div class="events-container reveal">
+            <!-- PULSANTE A SCOMPARSA (Visibile solo su Smartphone) -->
+            <button id="mobile-events-toggle" class="btn-events-toggle">
+                Scopri tutti gli eventi <span class="arrow">▾</span>
+            </button>
+            
+            <!-- LISTA EVENTI (Senza classe reveal) -->
+            <div id="mobile-events-list" class="events-container">
                 
                 <div class="events-row">
-                    <a href="ricevimenti.html" style="text-decoration: none;">
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <text x="12" y="16" text-anchor="middle" font-size="12" font-family="var(--font-heading)" stroke-width="0.8" fill="currentColor">18</text>
-                            <circle cx="12" cy="12" r="10"/>
-                        </svg>
-                        <h3>18esimi</h3>
-                    </div>
+                    <a href="ricevimenti.html" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <text x="12" y="16" text-anchor="middle" font-size="12" font-family="var(--font-heading)" stroke-width="0.8" fill="currentColor">18</text>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            <h3>18esimi</h3>
+                        </div>
                     </a>
 
-                    <a href="ricevimenti.html#matrimoni" style="text-decoration: none;">
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="12" r="6"/>
-                            <circle cx="15" cy="12" r="6"/>
-                        </svg>
-                        <h3>Matrimoni</h3>
-                    </div>
+                    <a href="ricevimenti.html#matrimoni" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="12" r="6"/>
+                                <circle cx="15" cy="12" r="6"/>
+                            </svg>
+                            <h3>Matrimoni</h3>
+                        </div>
                     </a>
 
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 10v6M2 8l10-5 10 5-10 5z"/>
-                            <path d="M6 10v6c0 1.66 2.69 3 6 3s6-1.34 6-3v-6"/>
-                        </svg>
-                        <h3>Lauree</h3>
-                    </div>
+                    <a href="#lauree" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6M2 8l10-5 10 5-10 5z"/>
+                                <path d="M6 10v6c0 1.66 2.69 3 6 3s6-1.34 6-3v-6"/>
+                            </svg>
+                            <h3>Lauree</h3>
+                        </div>
+                    </a>
 
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                        </svg>
-                        <h3>Battesimi</h3>
-                    </div>
+                    <a href="#battesimi" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                            </svg>
+                            <h3>Battesimi</h3>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="events-row">
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22c5-5 5-13 5-13s-8 0-13 5 0 8 0 8 8 0 8 0z"/>
-                        </svg>
-                        <h3>Comunioni</h3>
-                    </div>
+                    <a href="#comunioni" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22c5-5 5-13 5-13s-8 0-13 5 0 8 0 8 8 0 8 0z"/>
+                            </svg>
+                            <h3>Comunioni</h3>
+                        </div>
+                    </a>
 
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 12 20 22 4 22 4 12"/>
-                            <rect x="2" y="7" width="20" height="5"/>
-                            <line x1="12" y1="22" x2="12" y2="7"/>
-                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-                        </svg>
-                        <h3>Compleanni</h3>
-                    </div>
+                    <a href="#compleanni" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 12 20 22 4 22 4 12"/>
+                                <rect x="2" y="7" width="20" height="5"/>
+                                <line x1="12" y1="22" x2="12" y2="7"/>
+                                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+                                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+                            </svg>
+                            <h3>Compleanni</h3>
+                        </div>
+                    </a>
 
-                    <div class="event-circle">
-                        <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M8 22h8"/>
-                            <path d="M12 11v11"/>
-                            <path d="M7 3h10l-1.5 8H8.5L7 3z"/>
-                            <path d="M7 6h10"/>
-                        </svg>
-                        <h3>Romantiche Occasioni</h3>
-                    </div>
+                    <a href="#romantiche" class="event-link">
+                        <div class="event-circle">
+                            <svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 22h8"/>
+                                <path d="M12 11v11"/>
+                                <path d="M7 3h10l-1.5 8H8.5L7 3z"/>
+                                <path d="M7 6h10"/>
+                            </svg>
+                            <h3>Romantiche Occasioni</h3>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -332,7 +358,7 @@
         </div>
     </footer>
     
-    <script src="script.js" defer></script>
+    <script src="script.js?ver=2.3" defer></script>
 </body>
 </html>
 

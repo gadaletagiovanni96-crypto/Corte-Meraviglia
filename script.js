@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. NAVBAR SCROLL (Con protezione per pagina Contatti) ---
     const navbar = document.querySelector('.navbar');
-    // Si attiva SOLO se la navbar esiste e NON ha la classe 'navbar-solid'
     if (navbar && !navbar.classList.contains('navbar-solid')) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Chiude il menu se clicchi un link (TRANNE il sottomenu)
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submenu = document.querySelector('.submenu');
     if (dropdownToggle && submenu) {
         dropdownToggle.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 920) { // Aumentato a 920 per coprire anche i tablet in verticale
                 e.preventDefault(); 
                 submenu.classList.toggle('open');
                 
@@ -67,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Lancia l'animazione al primo caricamento
+        revealOnScroll();
     }
 
-    // --- 5. GESTIONE HOVER CAROUSEL (Card Servizi) ---
+    // --- 5. GESTIONE HOVER CAROUSEL (Card Servizi - Solo PC) ---
     const carousels = document.querySelectorAll('.hover-carousel');
     if (carousels.length > 0) {
         carousels.forEach(carousel => {
@@ -99,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 6. GESTIONE CAROSELLO RECENSIONI ---
     const track = document.querySelector('.carousel-track');
-    // Questo codice si esegue SOLO se la pagina contiene il carosello recensioni
     if (track) {
         const slides = Array.from(track.children);
         const nextBtn = document.querySelector('.next-btn');
@@ -133,60 +130,38 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
     }
 
-    // --- 8. GESTIONE TAB EVENTI ---
-    const eventTabs = document.querySelectorAll('.showcase-tab');
-    const eventPanels = document.querySelectorAll('.showcase-panel');
-
-    if (eventTabs.length > 0 && eventPanels.length > 0) {
-        eventTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // 1. Rimuovi la classe 'active' da tutti i bottoni e pannelli
-                eventTabs.forEach(t => t.classList.remove('active'));
-                eventPanels.forEach(p => p.classList.remove('active'));
-
-                // 2. Aggiungi la classe 'active' al bottone cliccato
-                tab.classList.add('active');
-
-                // 3. Trova il pannello corrispondente tramite il data-target e mostralo
-                const targetId = tab.getAttribute('data-target');
-                const targetPanel = document.getElementById(targetId);
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
-                }
-            });
-        });
-    }
-
-    // --- FLIP CARD CAROUSEL INTELLIGENTE (SOLO MOBILE) ---
-    // Esegue il codice solo se lo schermo è quello di uno smartphone o tablet
-    if (window.innerWidth <= 1024) {
-        
-        const flipCards = document.querySelectorAll('.flip-card');
-        const servicesGrid = document.querySelector('.services-grid');
-
-        // Configura l'osservatore
-        const flipObserverOptions = {
-            root: servicesGrid, // Osserva l'area di scorrimento
-            rootMargin: '0px',
-            threshold: 0.6 // La carta si gira quando è visibile al 60% (cioè quando è quasi al centro)
-        };
-
-        const flipObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Quando la carta arriva al centro, si scopre
-                    entry.target.classList.add('is-flipped');
-                } else {
-                    // Quando la carta esce dal centro, si copre di nuovo
-                    entry.target.classList.remove('is-flipped');
-                }
-            });
-        }, flipObserverOptions);
-
-        // Attacca l'osservatore a tutte le tue carte
+    // --- 7. FLIP CARD AL TOCCO (Solo Mobile e Tablet) ---
+    const flipCards = document.querySelectorAll('.flip-card');
+    if (flipCards.length > 0) {
         flipCards.forEach(card => {
-            flipObserver.observe(card);
+            card.addEventListener('click', function(e) {
+                // Non attivare il flip se clicchi sul player di Spotify o sul link in basso
+                if (e.target.tagName.toLowerCase() === 'iframe' || e.target.classList.contains('card-link')) {
+                    return;
+                }
+
+                // Chiude le altre carte
+                flipCards.forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('is-flipped');
+                    }
+                });
+                // Gira/Chiude la carta attuale
+                this.classList.toggle('is-flipped');
+            });
         });
     }
-}); 
+
+    // --- 8. MENU A SCOMPARSA EVENTI (Solo Smartphone) ---
+    const eventsToggleBtn = document.getElementById('mobile-events-toggle');
+    const eventsList = document.getElementById('mobile-events-list');
+
+    if (eventsToggleBtn && eventsList) {
+        eventsToggleBtn.addEventListener('click', () => {
+            eventsList.classList.toggle('open');
+            eventsToggleBtn.classList.toggle('open');
+        });
+    }
+
+}); // <-- Fine unica e corretta del DOMContentLoaded
 
