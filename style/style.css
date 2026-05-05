@@ -227,7 +227,7 @@ body.no-scroll {
 }
 
 /* B) Patina Anti-Sfocatura */
-.carosello-scroll .image-slide img,
+.prima-slide, .carosello-scroll .image-slide img,
 .carosello-scroll .spotify-slide img,
 .carosello-scroll > img { 
     transition: transform 0.8s ease, filter 0.8s ease; 
@@ -236,7 +236,10 @@ body.no-scroll {
 }
 
 /* C) Animazione Hover */
-.carosello-scroll .image-slide:hover img, 
+.prima-slide:hover{
+    transform: translateZ(0); filter: brightness(1) contrast(1.1) saturate(1.1);
+}
+ .carosello-scroll .image-slide:hover img, 
 .carosello-scroll .spotify-slide:hover img,
 .carosello-scroll > img:hover { 
     transform: scale(1.03) translateZ(0); filter: brightness(1) contrast(1.1) saturate(1.1); 
