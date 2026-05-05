@@ -320,7 +320,7 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     .footer-logo-container { justify-content: center; }
 
     /* Flip Cards Mobile: Più larghe e leggermente più basse */
-    .services-grid .flip-card { flex: 0 0 85% !important; height: 480px !important; }
+    .services-grid .flip-card { flex: 0 0 85% !important; height: 490px !important; }
     .card-body { padding: 20px 10px !important; }
     .card-body p { padding: 0 15px !important; font-size: 0.95rem; }
     .card-image { height: 200px !important; }
@@ -351,29 +351,40 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
         padding-bottom: 60px !important;
     }
 
-    /* Recensioni Mobile */
+   /* Recensioni Mobile */
     .carousel-container { display: block !important; position: relative; }
-    .carousel-slide { padding: 0 15px !important; }
+    
+    /* 1. Stringiamo il testo per fare spazio alle frecce (da 15px a 40px di margine laterale) */
+    .carousel-slide { padding: 0 40px !important; } 
     .review-text { font-size: 1.15rem !important; line-height: 1.5; margin-bottom: 20px; }
     
-    /* FRECCE SENZA ALONE */
+    /* 2. Sistemiamo le frecce e le blocchiamo */
     .carousel-btn { 
         position: absolute !important; 
-        top: 40%; 
-        transform: translateY(-50%); 
-        background: transparent !important; /* Elimina il cerchio semitrasparente */
+        top: 50%; /* Le centriamo perfettamente in verticale */
+        transform: translateY(-50%) !important; /* L' !important blocca eventuali movimenti indesiderati */
+        background: transparent !important; 
         width: auto !important; 
         height: auto !important; 
         border-radius: 0 !important;
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        padding: 10px !important; /* Spazio invisibile per non cliccare a vuoto */
-        font-size: 2rem !important; /* Freccia leggermente ingrandita per compensare */
+        padding: 10px !important; 
+        font-size: 1.8rem !important; /* Leggermente più fini */
+        z-index: 10;
     }
-    .prev-btn { left: -10px; }
-    .next-btn { right: -10px; }
-}
+    
+    /* 3. Uccidiamo l'effetto zoom (vibrazione) quando premi col dito sul telefono */
+    .carousel-btn:hover,
+    .carousel-btn:active,
+    .carousel-btn:focus {
+        transform: translateY(-50%) !important; 
+    }
+
+    /* 4. Le appoggiamo dolcemente ai bordi dello schermo */
+    .prev-btn { left: -5px; }
+    .next-btn { right: -5px; }
 
 /* --- SCHERMI MICROSCOPICI (Fino a 400px) --- */
 @media (max-width: 400px) {
