@@ -249,6 +249,34 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
 }
 
 /* =========================================
+   DIVISORE IMMAGINE PNG
+   ========================================= */
+/* =========================================
+   DIVISORE PNG (POSIZIONAMENTO ESATTO)
+   ========================================= */
+.png-divider {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* TRUCCO: I margini negativi annullano lo spazio delle sezioni */
+    margin-top: -100px;    /* Tira su il divisore verso la sezione sopra */
+    margin-bottom: -180px; /* Tira su la sezione sotto verso il divisore */
+    
+    line-height: 0;       /* Elimina spazi invisibili del testo */
+    position: relative;
+    z-index: 99;          /* Lo tiene sopra i bordi delle sezioni */
+    pointer-events: none; /* Impedisce che l'immagine blocchi eventuali clic */
+}
+
+.png-divider img {
+    width: 500px;        /* Regola la grandezza del tuo PNG da qui */
+    height: auto;
+    max-width: 90%;      /* Evita che esca dai bordi su mobile */
+}
+
+/* =========================================
    10. MEDIA QUERIES (RESPONSIVE UNIFICATO)
    ========================================= */
 
@@ -385,6 +413,7 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     /* 4. Le appoggiamo dolcemente ai bordi dello schermo */
     .prev-btn { left: -5px; }
     .next-btn { right: -5px; }
+}
 
 /* --- SCHERMI MICROSCOPICI (Fino a 400px) --- */
 @media (max-width: 400px) {
