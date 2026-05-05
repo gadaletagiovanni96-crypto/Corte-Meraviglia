@@ -163,5 +163,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 9. CAROSELLO CONCEPT (Pallini e Scorrimento Automatico FIXATO) ---
+    const conceptCarousel = document.getElementById('concept-carousel');
+    const conceptDots = document.querySelectorAll('.carosello-dots .dot');
+
+    if (conceptCarousel && conceptDots.length > 0) {
+        const slides = Array.from(conceptCarousel.children);
+        let autoScrollInterval;
+
+        // 1. Accende il pallino giusto quando scorri col dito
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = slides.indexOf(entry.target);
+                    conceptDots.forEach(dot => dot.classList.remove('active'));
+                    if(conceptDots[index]) conceptDots[index].classList.add('active');
+                }
+            });
+        }, {
+            root: conceptCarousel,
+            threshold: 0.6 
+        });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // NUOVO SISTEMA DI SCORRIMENTO (Scorre solo in orizzontale, non fa saltare il sito!)
+        const goToSlide = (index) => {
+            const targetSlide = slides[index];
+            // Calcola la posizione esatta della slide rispetto al contenitore
+            const scrollPos = targetSlide.offsetLeft - conceptCarousel.offsetLeft;
+            conceptCarousel.scrollTo({
+                left: scrollPos,
+                behavior: 'smooth'
+            });
+        };
+
+        // 2. Funzione per passare all'immagine successiva
+        const scrollToNextSlide = () => {
+            let currentIndex = 0;
+            conceptDots.forEach((dot, index) => {
+                if(dot.classList.contains('active')) currentIndex = index;
+            });
+            let nextIndex = (currentIndex + 1) % slides.length;
+            goToSlide(nextIndex);
+        };
+
+        // 3. Avvia lo scorrimento automatico (ogni 4 secondi)
+        const startAutoScroll = () => {
+            autoScrollInterval = setInterval(scrollToNextSlide, 4000); 
+        };
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+        };
+
+        // 4. Se clicchi su un pallino, va a quella slide
+        conceptDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                stopAutoScroll();
+                startAutoScroll();
+            });
+        });
+
+        // 5. Metti in pausa se l'utente tocca o passa il mouse
+        conceptCarousel.addEventListener('touchstart', stopAutoScroll, {passive: true});
+        conceptCarousel.addEventListener('touchend', startAutoScroll);
+        conceptCarousel.addEventListener('mouseenter', stopAutoScroll);
+        conceptCarousel.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
+    }
+
 }); // <-- Fine unica e corretta del DOMContentLoaded
 

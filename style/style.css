@@ -1,5 +1,5 @@
 /* =========================================
-   VARIABILI & RESET (Palette Full Green Elegante)
+   1. VARIABILI & RESET (Palette Full Green Elegante)
    ========================================= */
 :root {
     --color-bg: #EDF1EE; 
@@ -11,7 +11,8 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; overflow-wrap: break-word; }
 html { scroll-behavior: smooth; }
 body {
     font-family: var(--font-body);
@@ -21,18 +22,31 @@ body {
     overflow-x: hidden; 
 }
 html, body { overflow-x: hidden !important; width: 100%; max-width: 100vw; position: relative; }
-* { overflow-wrap: break-word; }
 
 /* =========================================
-   TIPOGRAFIA & UTILITIES
+   2. TIPOGRAFIA & UTILITIES
    ========================================= */
 h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--color-text-dark); }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .section-padding { padding: 100px 0; }
 .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
 
+/* SEZIONI A SCHERMO INTERO (SICURE) */
+.concept-section, 
+.services-section, 
+.events-section, 
+.reviews-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    width: 100%;
+}
+
 /* =========================================
-   HEADER & NAVIGAZIONE
+   3. HEADER & NAVIGAZIONE
    ========================================= */
 .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background-color: transparent; transition: all 0.4s ease-in-out; }
 .navbar.scrolled { padding: 15px 50px; background-color: rgba(237, 241, 238, 0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
@@ -61,12 +75,13 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .navbar.scrolled .btn-nav { color: var(--color-text-dark) !important; border-color: var(--color-accent); }
 .navbar .btn-nav:hover { background-color: var(--color-white); color: var(--color-text-dark) !important; }
 .navbar.scrolled .btn-nav:hover { background-color: var(--color-accent); color: var(--color-white) !important; }
+
 .menu-toggle { display: none; cursor: pointer; z-index: 1002; }
 .menu-toggle .bar { display: block; width: 25px; height: 2px; margin: 5px auto; background-color: var(--color-white); transition: all 0.3s ease-in-out; }
 .navbar.scrolled .menu-toggle .bar { background-color: var(--color-text-dark); }
 
 /* =========================================
-   HERO SECTION
+   4. HERO SECTION
    ========================================= */
 .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--color-white); padding: 0 20px; overflow: hidden; }
 .hero-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
@@ -78,37 +93,84 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .btn:hover { background: var(--color-white); color: var(--color-text-dark); }
 
 /* =========================================
-   CONCEPT SECTION
+   5. CONCEPT SECTION (Il Borgo)
    ========================================= */
+#concept { background-color: #ebf1ee; } /* Colore Salvia */
 .layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 20px 0; }
 .text-content h2 { font-size: 2.5rem; margin-bottom: 30px; }
 .text-content p { color: var(--color-text-light); margin-bottom: 20px; font-size: 1.1rem; }
 .image-content img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* Carosello Immagini / Spotify */
 .carosello-container { flex: 1; width: 100%; min-width: 0; }
-.carosello-scroll { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; scrollbar-color: var(--color-accent) transparent; }
-.carosello-scroll img { flex: 0 0 85%; max-width: 400px; height: 300px; object-fit: cover; border-radius: 5px; scroll-snap-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid var(--color-white); }
+.carosello-scroll { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none !important; -ms-overflow-style: none !important; padding-bottom: 0 !important; }
+.carosello-scroll::-webkit-scrollbar { display: none !important; }
+
+/* Struttura base uguale per tutte le slide (bordo, altezza, ombre) ma SENZA padding */
+.carosello-scroll > img,
+.carosello-scroll .image-slide,
+.carosello-scroll .spotify-slide {
+    flex: 0 0 85%; max-width: 400px; height: 300px; position: relative; border-radius: 5px; 
+    scroll-snap-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid var(--color-white); 
+    overflow: hidden; object-fit: cover;
+}
+
+/* Diamo il padding e il flex SOLO alle slide con testo e Spotify, lasciando l'immagine 2 pura */
+.carosello-scroll .image-slide,
+.carosello-scroll .spotify-slide {
+    display: flex; 
+    padding: 20px;
+}
+
+.carosello-scroll .image-slide { align-items: center; justify-content: center; }
+.carosello-scroll .spotify-slide { flex-direction: column; justify-content: flex-end; align-items: center; }
+
+.carosello-scroll .image-slide img,
+.carosello-scroll .spotify-slide img { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; object-fit: cover; flex: none !important; max-width: none !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; z-index: 0; }
+.carosello-scroll .slide-overlay,
+.carosello-scroll .spotify-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; transition: background-color 0.4s ease; }
+.carosello-scroll .slide-overlay { background-color: rgba(0, 0, 0, 0.4); }
+.carosello-scroll .spotify-overlay { background-color: rgba(0, 0, 0, 0.45); }
+.carosello-scroll .image-slide:hover .slide-overlay { background-color: rgba(0, 0, 0, 0.15); }
+.carosello-scroll .spotify-slide:hover .spotify-overlay { background-color: rgba(0, 0, 0, 0.2); }
+
+.carosello-scroll .slide-title { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-heading); font-size: 2.2rem; text-align: center; margin: 0; text-shadow: 0 4px 10px rgba(0,0,0,0.6); transition: transform 0.4s ease; }
+.carosello-scroll .image-slide:hover .slide-title { transform: scale(1.05); }
+
+.carosello-scroll .spotify-caption { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-align: center; opacity: 0.85; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.carosello-scroll .spotify-slide iframe { position: relative; z-index: 2; width: 100%; max-width: 300px; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+
+/* Pallini Carosello */
+.carosello-dots { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 25px; }
+.carosello-dots .dot { width: 10px; height: 10px; background-color: rgba(75, 120, 90, 0.3); border-radius: 50%; cursor: pointer; transition: all 0.4s ease; }
+.carosello-dots .dot.active { background-color: var(--color-accent); transform: scale(1.4); }
 
 /* =========================================
-   SERVICES GRID & FLIP CARDS (PC)
+   6. SERVICES GRID & FLIP CARDS
    ========================================= */
 .services-section { background-color: #DFE8E2; }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; }
+
 .flip-card { background-color: transparent; border: none; perspective: 1000px; height: 600px; width: 100%; }
 .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; }
 @media (hover: hover) { .flip-card:hover .flip-card-inner { transform: rotateY(180deg); } }
 .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+
 .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 8px; overflow: hidden; }
 .flip-card-front { background-color: var(--color-bg-green); }
 .flip-card-front img { width: 100%; height: 100%; object-fit: cover; }
+
 .front-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(36, 64, 48, 0.2), rgba(36, 64, 48, 0.8)); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 40px 20px; color: var(--color-white); }
 .front-overlay h3 { font-size: 2.2rem; margin-bottom: 10px; transform: translateY(20px); transition: transform 0.4s ease; color: var(--color-white); }
 .front-overlay span { font-family: var(--font-body); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; transform: translateY(20px); transition: transform 0.4s ease 0.1s; }
 .flip-card:hover .front-overlay h3, .flip-card:hover .front-overlay span { transform: translateY(0); }
+
 .flip-card-back { background-color: var(--color-white); color: var(--color-text-dark); transform: rotateY(180deg); display: flex; flex-direction: column; }
 .card-image { position: relative; width: 100%; height: 250px; overflow: hidden; }
 .card-image img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s ease; }
 .card-image img.active { opacity: 1; }
 .flip-card:hover .card-image img.active { transform: scale(1.05); }
+
 .card-body { padding: 20px; }
 .card-link { display: inline-block; margin-top: 20px; color: var(--color-accent); text-decoration: none; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; transition: all 0.3s ease; }
 .card-link::after { content: '→'; margin-left: 5px; transition: margin-left 0.3s ease; }
@@ -116,35 +178,27 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .card-link:hover::after { margin-left: 10px; }
 
 /* =========================================
-   SEZIONE EVENTI (PC) - RIPULITA
+   7. EVENTI
    ========================================= */
 .events-section { background-color: var(--color-white); position: relative; overflow: hidden; }
-.events-container { display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 2; }
-.btn-events-toggle { display: none; } /* Nascosto su PC */
+.events-container { display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 2; width: 100%; }
+.btn-events-toggle { display: none; }
 
 .decor-side { position: absolute; top: 50%; transform: translateY(-50%); width: 320px; height: 500px; object-fit: cover; border-radius: 50px; z-index: 0; opacity: 0.8; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 .decor-left { left: -160px; }
 .decor-right { right: -160px; }
 
-.events-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
-.event-link { text-decoration: none; display: block; } /* Rende i link blocchi perfetti per la griglia */
-
-.event-circle {
-    width: 160px; height: 160px; border-radius: 50%; border: 2px solid var(--color-accent); 
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background-color: var(--color-white); transition: all 0.4s ease; text-align: center;
-}
+.events-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; width: 100%; }
+.event-link { text-decoration: none; display: block; }
+.event-circle { width: 160px; height: 160px; border-radius: 50%; border: 2px solid var(--color-accent); display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--color-white); transition: all 0.4s ease; text-align: center; }
 .event-icon { width: 45px; height: 45px; margin-bottom: 15px; color: var(--color-accent); transition: color 0.4s ease; }
 .event-circle h3 { font-size: 1.05rem; font-family: var(--font-heading); color: var(--color-text-dark); margin: 0; transition: color 0.4s ease; }
 
-.event-link:hover .event-circle {
-    background-color: var(--color-bg-green); border-color: var(--color-bg-green);
-    transform: translateY(-10px); box-shadow: 0 15px 30px rgba(36, 64, 48, 0.3);
-}
+.event-link:hover .event-circle { background-color: var(--color-bg-green); border-color: var(--color-bg-green); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(36, 64, 48, 0.3); }
 .event-link:hover .event-icon, .event-link:hover .event-circle h3 { color: var(--color-white); }
 
 /* =========================================
-   RECENSIONI, SPOTIFY E FOOTER
+   8. RECENSIONI & FOOTER
    ========================================= */
 .reviews-section { background-color: var(--color-bg-green); color: var(--color-white); }
 .reviews-section .section-title { color: var(--color-white); }
@@ -158,33 +212,18 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .review-author { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-white); }
 .carousel-btn { background: transparent; border: none; font-size: 2.5rem; color: var(--color-white); opacity: 0.7; cursor: pointer; padding: 10px; z-index: 10; }
 .carousel-btn:hover { opacity: 1; transform: scale(1.1); }
-.btn-dark { border-color: var(--color-white); color: var(--color-white); }
-.btn-dark:hover { background-color: var(--color-white); color: var(--color-bg-green); }
-.spotify-player { border-radius: 8px; margin-top: 25px; margin-bottom: 15px; width: 100%; filter: sepia(0.7) hue-rotate(70deg) saturate(0.8); transition: transform 0.3s ease; }
+
 .footer { background-color: #0E1D14; color: var(--color-white); padding: 80px 0 30px; }
 .footer-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 30px; }
 .footer-logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 .footer-logo { height: 45px; opacity: 0.9; }
 .footer-logo2 { height: 70px; opacity: 0.9; }
+.footer-bottom { width: 100%; text-align: center; color: #777; font-size: 0.85rem; padding: 0 20px; display: flex; justify-content: center; align-items: center; }
+.footer-bottom p { margin: 0; text-align: center; }
 
-.footer-bottom { 
-    width: 100%;
-    text-align: center; 
-    color: #777; 
-    font-size: 0.85rem; 
-    padding: 0 20px; /* Diamo lo stesso margine di sicurezza del contenitore */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer-bottom p {
-    margin: 0; /* Rimuove margini invisibili che potrebbero spingere la scritta di lato */
-    text-align: center;
-}
-
-
-/* ANIMAZIONI */
+/* =========================================
+   9. ANIMAZIONI & FIX SPOTIFY GLOBALE
+   ========================================= */
 .fade-in { animation: fadeIn 1s ease-in; }
 .slide-up { animation: slideUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -192,8 +231,25 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
+iframe[src*="spotify.com"], .spotify-player {
+    display: block !important;
+    height: 82px !important; 
+    min-height: 82px !important;
+    max-height: 82px !important;
+    width: 100% !important;
+    overflow: hidden !important; 
+    border: none !important;
+    margin-top: 15px !important;
+    
+    /* IL TUO FILTRO RIPRISTINATO */
+    filter: sepia(0.7) hue-rotate(70deg) saturate(0.8);
+}
+iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+}
+
 /* =========================================
-   MEDIA QUERIES (RESPONSIVE PULITO)
+   10. MEDIA QUERIES (RESPONSIVE UNIFICATO)
    ========================================= */
 
 /* --- TABLET (Fino a 1024px) --- */
@@ -204,15 +260,28 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
     .decor-left { left: -100px; }
     .decor-right { right: -100px; }
 
-    /* Servizi in Carosello su Tablet */
-    .services-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 40px; scrollbar-width: thin; scrollbar-color: var(--color-accent) rgba(75, 120, 90, 0.1); }
-    .services-grid::-webkit-scrollbar { height: 4px; }
-    .services-grid::-webkit-scrollbar-track { background: rgba(75, 120, 90, 0.1); border-radius: 10px; margin: 0 40px; }
-    .services-grid::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 10px; }
-    .service-card { flex: 0 0 65%; scroll-snap-align: center; }
+    /* Fix Flip Cards su Tablet: Trasforma in carosello orizzontale sicuro */
+    .services-grid { 
+        display: flex; 
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; 
+        gap: 20px; 
+        padding-bottom: 20px; 
+        scrollbar-width: none !important; 
+        -ms-overflow-style: none !important; 
+        align-items: center; /* Impedisce l'allungamento in verticale */
+    }
+    .services-grid::-webkit-scrollbar { display: none !important; }
+    
+    .services-grid .flip-card { 
+        flex: 0 0 65% !important; /* Non si schiaccia */
+        max-width: 400px;
+        height: 500px !important; 
+        scroll-snap-align: center; 
+    }
 }
 
-/* --- MENU MOBILE (Fino a 920px) --- */
+/* --- MENU MOBILE E LAYOUT (Fino a 920px) --- */
 @media (max-width: 920px) {
     .navbar { padding: 15px 25px; }
     .logo { height: 45px; }
@@ -221,18 +290,23 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
     nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(26, 51, 36, 0.98); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease-in-out; z-index: 1001; }
     nav.active { opacity: 1; visibility: visible; }
     .nav-links { flex-direction: column; gap: 30px; text-align: center; }
-    .navbar .nav-links a { font-family: var(--font-heading); font-size: 2rem; color: var(--color-white) !important; text-transform: none; }
-    .navbar .btn-nav { color: var(--color-white) !important; border-color: var(--color-accent) !important; }
+    
+    /* Colori del menu corretti */
+    .navbar .nav-links a, .navbar.scrolled .nav-links a, .navbar .btn-nav, .navbar.scrolled .btn-nav { font-family: var(--font-heading); font-size: 2rem; color: var(--color-white) !important; text-transform: none; border-color: var(--color-accent) !important; }
+    .navbar .submenu a, .navbar.scrolled .submenu a { font-family: var(--font-body); font-size: 1.1rem; color: rgba(255, 255, 255, 0.8) !important; padding: 10px 0; }
+    
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    
     .dropdown { display: flex; flex-direction: column; align-items: center; width: 100%; }
-    .submenu { position: static; transform: none; background-color: transparent; box-shadow: none; min-width: 100%; padding: 0; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: all 0.5s ease; }
+    .submenu { position: static; transform: none; background-color: transparent !important; box-shadow: none !important; min-width: 100%; padding: 0; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: all 0.5s ease; }
     .submenu.open { max-height: 250px; padding-top: 20px; opacity: 1; visibility: visible; }
-    .navbar .submenu a { font-family: var(--font-body); font-size: 1.1rem; color: rgba(255, 255, 255, 0.7) !important; padding: 10px 0; }
+    
     .layout-split { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .layout-split .text-content { order: -1; }
     .text-content h2 { font-size: 2.2rem; margin-bottom: 20px; }
+    .text-content p { padding: 0 25px !important; line-height: 1.7; }
 }
 
 /* --- SMARTPHONE (Fino a 768px) --- */
@@ -242,132 +316,46 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
     .text-content h2 { font-size: 1.8rem; }
     .front-overlay h3 { font-size: 1.6rem; }
     .decor-side { display: none; } 
-    .service-card { flex: 0 0 85%; }
     .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
     .footer-logo-container { justify-content: center; }
 
-    /* EVENTI: MENU A TENDINA */
+    /* Flip Cards Mobile: Più larghe e leggermente più basse */
+    .services-grid .flip-card { flex: 0 0 85% !important; height: 480px !important; }
+    .card-body { padding: 20px 10px !important; }
+    .card-body p { padding: 0 15px !important; font-size: 0.95rem; }
+    .card-image { height: 200px !important; }
+
+    /* Eventi Mobile */
     .btn-events-toggle { display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px; background-color: transparent; border: 1px solid var(--color-accent); color: var(--color-text-dark); border-radius: 30px; font-family: var(--font-heading); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px; }
     .btn-events-toggle .arrow { margin-left: 10px; transition: transform 0.4s ease; }
     .btn-events-toggle.open { background-color: var(--color-bg-green); color: var(--color-white); border-color: var(--color-bg-green); }
     .btn-events-toggle.open .arrow { transform: rotate(180deg); }
-
-    /* Lista eventi invisibile all'inizio */
     #mobile-events-list { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.5s ease-in-out; margin: 0; padding-top: 0 !important; padding-bottom: 0 !important; }
     #mobile-events-list.open { max-height: 2000px; opacity: 1; padding-top: 20px !important; }
-
-    /* EVENTI: Layout Cerchio sx - Testo dx */
-    .events-row { flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+    #mobile-events-list.events-container, .events-row { gap: 15px !important; }
+    .events-row { flex-direction: column; align-items: center; width: 100%; }
     .event-link { width: 100%; }
     .event-circle { width: 100%; height: auto; flex-direction: row; justify-content: flex-start; background: transparent; border: none; padding: 10px 0; border-radius: 0; }
-    
     .event-icon { width: 65px; height: 65px; min-width: 65px; border-radius: 50%; border: 2px solid var(--color-accent); background-color: var(--color-white); padding: 16px; margin-bottom: 0; margin-right: 20px; color: var(--color-accent); transition: all 0.4s ease; }
     .event-circle h3 { font-size: 1.2rem; letter-spacing: 1px; text-align: left; color: var(--color-text-dark); }
-    
     .event-link:hover .event-circle { transform: translateX(10px); background: transparent; }
     .event-link:hover .event-icon { background-color: var(--color-bg-green); border-color: var(--color-bg-green); color: var(--color-white); box-shadow: 0 10px 20px rgba(36, 64, 48, 0.2); }
     .event-link:hover .event-circle h3 { color: var(--color-bg-green); }
-}
 
-/* =========================================
-   FIX MENU MOBILE E RECENSIONI (SMARTPHONE)
-   ========================================= */
-
-@media (max-width: 920px) {
-    .navbar .nav-links a, 
-    .navbar.scrolled .nav-links a,
-    .navbar .btn-nav, 
-    .navbar.scrolled .btn-nav { color: var(--color-white) !important; }
-    .navbar .submenu a, 
-    .navbar.scrolled .submenu a { color: rgba(255, 255, 255, 0.8) !important; }
-    .submenu { background-color: transparent !important; box-shadow: none !important; }
-    .text-content p { padding: 0 25px !important; line-height: 1.7; }
-}
-
-@media (max-width: 768px) {
-    /* Recensioni */
+    /* Recensioni Mobile */
     .carousel-container { display: block !important; position: relative; }
     .carousel-slide { padding: 0 15px !important; }
     .review-text { font-size: 1.15rem !important; line-height: 1.5; margin-bottom: 20px; }
     .carousel-btn { position: absolute !important; top: 40%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.08) !important; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0 !important; font-size: 1.5rem !important; }
     .prev-btn { left: -10px; }
     .next-btn { right: -10px; }
-
-    /* Eventi */
-    #mobile-events-list.events-container, .events-row { gap: 15px !important; }
-
-    /* Flip Cards */
-    .card-body { padding: 20px 10px !important; }
-    .card-body p { padding: 0 15px !important; font-size: 0.95rem; }
-    .flip-card { height: 500px !important; }
-    .card-image { height: 200px !important; }
 }
 
+/* --- SCHERMI MICROSCOPICI (Fino a 400px) --- */
 @media (max-width: 400px) {
-    /* Schermi microscopici */
     .hero h1 { font-size: 1.8rem !important; }
     .section-title { font-size: 1.4rem !important; }
     .text-content h2 { font-size: 1.5rem !important; }
     .front-overlay h3 { font-size: 1.4rem !important; }
     .carosello-scroll .slide-title { font-size: 1.8rem !important; }
-}
-
-/* =========================================
-   CAROSELLO CONCEPT (FOTO + SPOTIFY)
-   ========================================= */
-
-.carosello-scroll .image-slide,
-.carosello-scroll .spotify-slide {
-    flex: 0 0 85%; max-width: 400px; height: 300px; position: relative; border-radius: 5px; 
-    scroll-snap-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid var(--color-white); 
-    overflow: hidden; display: flex; padding: 20px;
-}
-
-.carosello-scroll .image-slide { align-items: center; justify-content: center; }
-.carosello-scroll .spotify-slide { flex-direction: column; justify-content: flex-end; align-items: center; }
-
-.carosello-scroll .image-slide img,
-.carosello-scroll .spotify-slide img { 
-    position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; 
-    object-fit: cover; flex: none !important; max-width: none !important; border: none !important; 
-    border-radius: 0 !important; box-shadow: none !important; z-index: 0; 
-}
-
-.carosello-scroll .slide-overlay,
-.carosello-scroll .spotify-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; transition: background-color 0.4s ease; }
-.carosello-scroll .slide-overlay { background-color: rgba(0, 0, 0, 0.4); }
-.carosello-scroll .spotify-overlay { background-color: rgba(0, 0, 0, 0.45); }
-
-.carosello-scroll .image-slide:hover .slide-overlay { background-color: rgba(0, 0, 0, 0.15); }
-.carosello-scroll .spotify-slide:hover .spotify-overlay { background-color: rgba(0, 0, 0, 0.2); }
-
-.carosello-scroll .slide-title { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-heading); font-size: 2.2rem; text-align: center; margin: 0; text-shadow: 0 4px 10px rgba(0,0,0,0.6); transition: transform 0.4s ease; }
-.carosello-scroll .image-slide:hover .slide-title { transform: scale(1.05); }
-
-.carosello-scroll .spotify-caption { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-align: center; opacity: 0.85; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.carosello-scroll .spotify-slide iframe { position: relative; z-index: 2; width: 100%; max-width: 300px; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-
-
-/* =========================================
-   FIX SPOTIFY ASSOLUTO GLOBALE (LA CURA DEFINITIVA)
-   ========================================= */
-
-/* Colpiamo TUTTI gli iframe di Spotify nel sito contemporaneamente */
-iframe[src*="spotify.com"], .spotify-player {
-    display: block !important;
-    height: 82px !important;  /* I 2 pixel magici che impediscono lo scrollo interno su iOS */
-    min-height: 82px !important;
-    max-height: 82px !important;
-    width: 100% !important;
-    overflow: hidden !important; 
-    border: none !important;
-    margin-top: 15px !important;
-}
-
-/* Uccidiamo visivamente la barra su Chrome/Safari se prova ad apparire */
-iframe[src*="spotify.com"]::-webkit-scrollbar,
-.spotify-player::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corte Meraviglia | Ristorante, Ricevimenti & B&B</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css?v=4.5">
+    <link rel="stylesheet" href="style/style.css?v=4.6">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
@@ -51,6 +51,8 @@
     </section>
 
     <section id="concept" class="concept-section section-padding">
+        
+        <!-- PRIMO BLOCCO: Testo e Immagine singola -->
         <div class="container layout-split">
             <div class="text-content reveal">
                 <h2>Pietra, Natura e Design</h2>
@@ -61,31 +63,46 @@
                 <img src="assets/gal2.jpg" alt="Dettaglio architettonico borgo antico">
             </div>
         </div>
+        
+        <!-- SECONDO BLOCCO: Carosello e Testo -->
         <div class="container layout-split">
             <div class="carosello-container">
-                <div class="carosello-scroll">
-                    
-                    <img src="assets/chiaromonte/chiaromonte2.png" alt="Chef">
-                    <img src="assets/chiaromonte/chiaromonte3.jpg" alt="Piatto">
+                
+                <div class="carosello-scroll" id="concept-carousel">
+                    <!-- PRIMA SLIDE -->
+                    <div class="image-slide">
+                        <img src="assets/chiaromonte/chiaromonte2.png" alt="Musica">
+                        
+                    </div>
 
+                    <!-- SECONDA SLIDE -->
+                    <img src="assets/chiaromonte/chiaromonte1.png" alt="Chef">
+                    
+                    <!-- TERZA SLIDE (SPOTIFY) -->
                     <div class="spotify-slide">
-        <!-- L'immagine di sfondo -->
-        <img src="assets/chiaromonte/chiaromonte1.png" alt="Piatto">
-        <!-- L'effetto scuro -->
-        <div class="spotify-overlay"></div>
-        <!-- LA NUOVA SCRITTA EMOZIONALE -->
-        <span class="spotify-caption">Lascia che la bellezza diventi melodia</span>
-        <!-- Il player -->
-        <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
+                        <img src="assets/chiaromonte/chiaromonte3.jpg" alt="Piatto">
+                        <div class="spotify-overlay"></div>
+                        <span class="spotify-caption">Lascia che la bellezza diventi melodia</span>
+                        <iframe scrolling="no" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
                 </div>
+                
+                <!-- I PALLINI DI NAVIGAZIONE -->
+                <div class="carosello-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+                
             </div>
+            
             <div class="text-content reveal">
                 <h2>La bellezza della Terra Lucana</h2>
                 <p>La Basilicata è una terra segreta e preziosa, dove l'eleganza nasce dalla natura più autentica. È un respiro profondo tra boschi incontaminati e calanchi scultorei, un incontro poetico tra la pietra millenaria dei suoi antichi borghi e la purezza delle sue acque.</p>
-                <a href="https://www.basilicataturistica.it/territori/chiaromonte/" class="card-link">Scopri di più</a>
+                <a href="https://www.basilicataturistica.it/territori/chiaromonte/" target="_blank" class="card-link">Scopri di più</a>
             </div>
         </div>
+        
     </section>
 
     <section id="services" class="services-section section-padding">
@@ -118,7 +135,7 @@
                     <h3>Il Ristorante</h3>
                     <p>Sapori autentici del territorio rielaborati in chiave contemporanea, serviti in un'antica stalla dalle volte a botte.</p>
                     
-                    <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     <a href="ristorante.html" class="card-link">Scopri il menu</a>
                 </div>
             </div>
@@ -148,7 +165,7 @@
                 <div class="card-body">
                     <h3>Eventi & Ricevimenti</h3>
                     <p>La corte centrale e la limonaia di vetro offrono una cornice magica per matrimoni e cerimonie esclusive.</p>
-                    <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe class="spotify-player" src="https://open.spotify.com/embed/track/2HoqbEOXgbDSLZ5XCePEXt?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     
                     <a href="#link-eventi" class="card-link">Scopri gli spazi</a>
                 </div>
@@ -358,7 +375,7 @@
         </div>
     </footer>
     
-    <script src="script.js?ver=2.3" defer></script>
+    <script src="script.js?ver=2.4" defer></script>
 </body>
 </html>
 
