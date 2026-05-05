@@ -262,7 +262,7 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     
     /* TRUCCO: I margini negativi annullano lo spazio delle sezioni */
     margin-top: -100px;    /* Tira su il divisore verso la sezione sopra */
-    margin-bottom: -180px; /* Tira su la sezione sotto verso il divisore */
+    margin-bottom: -150px; /* Tira su la sezione sotto verso il divisore */
     
     line-height: 0;       /* Elimina spazi invisibili del testo */
     position: relative;
