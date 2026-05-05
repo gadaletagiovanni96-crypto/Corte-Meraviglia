@@ -473,8 +473,21 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
     }
 
     /* Uccidiamo la barra di scorrimento di Spotify dandogli qualche pixel di respiro in verticale */
+    /* 3. Blocchiamo lo scorrimento ribelle di Spotify in modo assoluto */
     .spotify-player {
-        height: 90px !important; 
+        display: block !important; /* MIRACOLO: Questo elimina lo "spazio fantasma" sotto il player! */
+        height: 80px !important;   /* Deve essere 80px esatti come previsto da Spotify */
+        min-height: 80px !important;
+        max-height: 80px !important;
+        width: 100% !important;
+        overflow: hidden !important; 
+        border: none !important;
+        margin: 15px auto !important;
+    }
+    
+    /* E se il browser prova comunque a mostrare la barra, la rendiamo invisibile */
+    .spotify-player::-webkit-scrollbar {
+        display: none !important;
     }
 }
 
