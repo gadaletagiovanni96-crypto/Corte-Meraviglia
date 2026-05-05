@@ -46,6 +46,70 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 }
 
 /* =========================================
+   PRELOADER (Schermata di Caricamento)
+   ========================================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg-green); /* Usa il tuo verde scuro elegante */
+    z-index: 9999; /* Rimane sopra a QUALSIASI cosa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease; /* Transizione morbida per sparire */
+}
+
+.loader-content {
+    text-align: center;
+    color: var(--color-white);
+    padding: 20px;
+}
+
+/* Cerchio che gira minimalista */
+.spinner {
+    width: 45px;
+    height: 45px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid var(--color-accent); /* Il verde chiaro che gira */
+    border-radius: 50%;
+    margin: 0 auto 30px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Testo che appare dolcemente */
+.headphones-msg {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeInMsg 1.5s ease 0.5s forwards; 
+}
+
+@keyframes fadeInMsg {
+    to { opacity: 0.8; }
+}
+
+/* Classi che aggiungerà Javascript per far sparire tutto */
+.preloader-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Blocca lo scorrimento del sito finché sta caricando */
+body.no-scroll {
+    overflow: hidden !important;
+}
+
+/* =========================================
    3. HEADER & NAVIGAZIONE
    ========================================= */
 .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background-color: transparent; transition: all 0.4s ease-in-out; }
