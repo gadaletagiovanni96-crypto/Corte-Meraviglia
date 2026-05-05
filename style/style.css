@@ -93,58 +93,139 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 .btn:hover { background: var(--color-white); color: var(--color-text-dark); }
 
 /* =========================================
-   5. CONCEPT SECTION (Il Borgo)
+   5. CONCEPT SECTION (Il Borgo) - DESIGN LUXURY
    ========================================= */
-#concept { background-color: #ebf1ee; } /* Colore Salvia */
+#concept { background-color: #DCE5E0; } /* Colore Salvia */
 .layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 20px 0; }
 .text-content h2 { font-size: 2.5rem; margin-bottom: 30px; }
 .text-content p { color: var(--color-text-light); margin-bottom: 20px; font-size: 1.1rem; }
 .image-content img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
-/* Carosello Immagini / Spotify */
-.carosello-container { flex: 1; width: 100%; min-width: 0; }
-.carosello-scroll { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none !important; -ms-overflow-style: none !important; padding-bottom: 0 !important; }
+/* =========================================
+   1. CAROSELLO CONCEPT: CONTENITORE (PC FIXATO)
+   ========================================= */
+.carosello-container { flex: 1; width: 100%; min-width: 0; position: relative; }
+
+.carosello-scroll { 
+    display: flex; 
+    gap: 1.5rem; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    scrollbar-width: none !important; 
+    -ms-overflow-style: none !important; 
+    padding-bottom: 0 !important; 
+    padding-top: 10px;
+    /* Rimosso il padding matematico che decentrava il PC! */
+}
 .carosello-scroll::-webkit-scrollbar { display: none !important; }
 
-/* Struttura base uguale per tutte le slide (bordo, altezza, ombre) ma SENZA padding */
+/* =========================================
+   2. DESIGN SQUADRATO E STRUTTURA DELLE CARTE
+   ========================================= */
+/* Dimensioni e forma per tutte e 3 le slide */
 .carosello-scroll > img,
 .carosello-scroll .image-slide,
 .carosello-scroll .spotify-slide {
-    flex: 0 0 85%; max-width: 400px; height: 300px; position: relative; border-radius: 5px; 
-    scroll-snap-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid var(--color-white); 
-    overflow: hidden; object-fit: cover;
+    flex: 0 0 85%; 
+    max-width: 380px; 
+    height: 350px; 
+    position: relative; 
+    border-radius: 0 !important; 
+    scroll-snap-align: center; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    overflow: hidden; 
+    border: none;
+    object-fit: cover; /* Fondamentale per la slide 2 (foto nuda) */
 }
 
-/* Diamo il padding e il flex SOLO alle slide con testo e Spotify, lasciando l'immagine 2 pura */
+/* Padding solo per le slide con testi (1 e 3) */
 .carosello-scroll .image-slide,
-.carosello-scroll .spotify-slide {
-    display: flex; 
-    padding: 20px;
-}
-
-.carosello-scroll .image-slide { align-items: center; justify-content: center; }
+.carosello-scroll .spotify-slide { display: flex; padding: 30px 20px; }
+.carosello-scroll .image-slide { align-items: flex-end; justify-content: center; } 
 .carosello-scroll .spotify-slide { flex-direction: column; justify-content: flex-end; align-items: center; }
 
+/* =========================================
+   3. IMMAGINI: POSIZIONAMENTO E PATINA NITIDA
+   ========================================= */
+/* A) Posizionamento di sfondo SOLO per le foto dentro ai div (Slide 1 e 3) */
 .carosello-scroll .image-slide img,
-.carosello-scroll .spotify-slide img { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; object-fit: cover; flex: none !important; max-width: none !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; z-index: 0; }
-.carosello-scroll .slide-overlay,
-.carosello-scroll .spotify-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; transition: background-color 0.4s ease; }
-.carosello-scroll .slide-overlay { background-color: rgba(0, 0, 0, 0.4); }
-.carosello-scroll .spotify-overlay { background-color: rgba(0, 0, 0, 0.45); }
-.carosello-scroll .image-slide:hover .slide-overlay { background-color: rgba(0, 0, 0, 0.15); }
-.carosello-scroll .spotify-slide:hover .spotify-overlay { background-color: rgba(0, 0, 0, 0.2); }
+.carosello-scroll .spotify-slide img { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
+}
 
-.carosello-scroll .slide-title { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-heading); font-size: 2.2rem; text-align: center; margin: 0; text-shadow: 0 4px 10px rgba(0,0,0,0.6); transition: transform 0.4s ease; }
-.carosello-scroll .image-slide:hover .slide-title { transform: scale(1.05); }
+/* B) Applichiamo la Patina nitida e i trucchi Anti-Sfocatura a TUTTE le foto */
+.carosello-scroll .image-slide img,
+.carosello-scroll .spotify-slide img,
+.carosello-scroll > img { 
+    transition: transform 0.8s ease, filter 0.8s ease; 
+    
+    /* PATINA PURA: Abbassa un po' la luce e il colore, ma alza il contrasto per non perdere dettagli */
+    filter: brightness(0.75) contrast(1.15) saturate(0.85);
+    
+    /* TRUCCHI HARDWARE: Impediscono al browser di sgranare l'immagine durante lo zoom */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0); 
+}
 
-.carosello-scroll .spotify-caption { position: relative; z-index: 2; color: var(--color-white); font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-align: center; opacity: 0.85; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.carosello-scroll .spotify-slide iframe { position: relative; z-index: 2; width: 100%; max-width: 300px; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+/* C) Hover: l'immagine si ingrandisce e torna ai colori originali brillanti */
+.carosello-scroll .image-slide:hover img, 
+.carosello-scroll .spotify-slide:hover img,
+.carosello-scroll > img:hover { 
+    transform: scale(1.03) translateZ(0); 
+    filter: brightness(1) contrast(1.1) saturate(1.1); 
+}
 
-/* Pallini Carosello */
-.carosello-dots { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 25px; }
+/* =========================================
+   4. GRADIENTE E TESTI INTERNI
+   ========================================= */
+.carosello-scroll .slide-overlay, 
+.carosello-scroll .spotify-overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; 
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%); 
+    pointer-events: none; 
+}
+
+.carosello-scroll .slide-title { 
+    position: relative; z-index: 2; color: var(--color-white); 
+    font-family: var(--font-heading); font-size: 2rem; text-align: center; margin: 0; 
+    pointer-events: none;
+}
+
+.carosello-scroll .spotify-caption { 
+    position: relative; z-index: 2; color: var(--color-white); 
+    font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; 
+    letter-spacing: 2px; margin-bottom: 20px; text-align: center; 
+    pointer-events: none;
+}
+
+.carosello-scroll .spotify-slide iframe { position: relative; z-index: 2; width: 100%; max-width: 300px; }
+
+/* =========================================
+   5. FRECCE SQUADRATE E PALLINI
+   ========================================= */
+.concept-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-bg-green);
+    color: var(--color-white);
+    border: none;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    border-radius: 0; 
+}
+.concept-btn:hover { background-color: var(--color-accent); }
+.prev-concept { left: -15px; }
+.next-concept { right: -15px; }
+
+.carosello-dots { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 30px; }
 .carosello-dots .dot { width: 10px; height: 10px; background-color: rgba(75, 120, 90, 0.3); border-radius: 50%; cursor: pointer; transition: all 0.4s ease; }
 .carosello-dots .dot.active { background-color: var(--color-accent); transform: scale(1.4); }
-
 /* =========================================
    6. SERVICES GRID & FLIP CARDS
    ========================================= */
@@ -444,6 +525,12 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     #div-concept-ambienti img {
         width: 190px;
     }
+
+    /* CENTRATURA CAROSELLO SU SMARTPHONE */
+    .carosello-scroll {
+        padding-left: 7.5% !important;  /* Forza la prima immagine al centro */
+        padding-right: 7.5% !important; /* Forza l'ultima immagine al centro */
+    }
 }
 
 /* --- SCHERMI MICROSCOPICI (Fino a 400px) --- */
@@ -453,4 +540,5 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     .text-content h2 { font-size: 1.5rem !important; }
     .front-overlay h3 { font-size: 1.4rem !important; }
     .carosello-scroll .slide-title { font-size: 1.8rem !important; }
+    .carosello-scroll > img, .carosello-scroll .image-slide, .carosello-scroll .spotify-slide { height: 420px !important; }
 }

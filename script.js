@@ -163,15 +163,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. CAROSELLO CONCEPT (Pallini e Scorrimento Automatico FIXATO) ---
+    // --- 9. CAROSELLO CONCEPT (Frecce, Pallini e Autoscroll) ---
     const conceptCarousel = document.getElementById('concept-carousel');
     const conceptDots = document.querySelectorAll('.carosello-dots .dot');
+    const prevConceptBtn = document.querySelector('.prev-concept');
+    const nextConceptBtn = document.querySelector('.next-concept');
 
     if (conceptCarousel && conceptDots.length > 0) {
         const slides = Array.from(conceptCarousel.children);
         let autoScrollInterval;
 
-        // 1. Accende il pallino giusto quando scorri col dito
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -180,52 +181,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(conceptDots[index]) conceptDots[index].classList.add('active');
                 }
             });
-        }, {
-            root: conceptCarousel,
-            threshold: 0.6 
-        });
+        }, { root: conceptCarousel, threshold: 0.6 });
 
         slides.forEach(slide => observer.observe(slide));
 
-        // NUOVO SISTEMA DI SCORRIMENTO (Scorre solo in orizzontale, non fa saltare il sito!)
         const goToSlide = (index) => {
             const targetSlide = slides[index];
-            // Calcola la posizione esatta della slide rispetto al contenitore
             const scrollPos = targetSlide.offsetLeft - conceptCarousel.offsetLeft;
-            conceptCarousel.scrollTo({
-                left: scrollPos,
-                behavior: 'smooth'
-            });
+            conceptCarousel.scrollTo({ left: scrollPos, behavior: 'smooth' });
         };
 
-        // 2. Funzione per passare all'immagine successiva
         const scrollToNextSlide = () => {
             let currentIndex = 0;
-            conceptDots.forEach((dot, index) => {
-                if(dot.classList.contains('active')) currentIndex = index;
-            });
+            conceptDots.forEach((dot, index) => { if(dot.classList.contains('active')) currentIndex = index; });
             let nextIndex = (currentIndex + 1) % slides.length;
             goToSlide(nextIndex);
         };
 
-        // 3. Avvia lo scorrimento automatico (ogni 4 secondi)
-        const startAutoScroll = () => {
-            autoScrollInterval = setInterval(scrollToNextSlide, 4000); 
-        };
-        const stopAutoScroll = () => {
-            clearInterval(autoScrollInterval);
+        const scrollToPrevSlide = () => {
+            let currentIndex = 0;
+            conceptDots.forEach((dot, index) => { if(dot.classList.contains('active')) currentIndex = index; });
+            let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+            goToSlide(prevIndex);
         };
 
-        // 4. Se clicchi su un pallino, va a quella slide
+        const startAutoScroll = () => { autoScrollInterval = setInterval(scrollToNextSlide, 4000); };
+        const stopAutoScroll = () => { clearInterval(autoScrollInterval); };
+
+        // Clic sulle Frecce
+        if(prevConceptBtn && nextConceptBtn) {
+            prevConceptBtn.addEventListener('click', () => { scrollToPrevSlide(); stopAutoScroll(); startAutoScroll(); });
+            nextConceptBtn.addEventListener('click', () => { scrollToNextSlide(); stopAutoScroll(); startAutoScroll(); });
+        }
+
+        // Clic sui Pallini
         conceptDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                stopAutoScroll();
-                startAutoScroll();
-            });
+            dot.addEventListener('click', () => { goToSlide(index); stopAutoScroll(); startAutoScroll(); });
         });
 
-        // 5. Metti in pausa se l'utente tocca o passa il mouse
         conceptCarousel.addEventListener('touchstart', stopAutoScroll, {passive: true});
         conceptCarousel.addEventListener('touchend', startAutoScroll);
         conceptCarousel.addEventListener('mouseenter', stopAutoScroll);
