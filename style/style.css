@@ -474,7 +474,7 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
 
     /* Uccidiamo la barra di scorrimento di Spotify dandogli qualche pixel di respiro in verticale */
     .spotify-player {
-        height: 86px !important; 
+        height: 80px !important; 
     }
 }
 
