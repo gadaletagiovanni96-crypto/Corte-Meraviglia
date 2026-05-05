@@ -457,3 +457,33 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; color: var(--co
     border-radius: 8px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
+
+/* =========================================
+   FIX DEFINITIVI: SCHERMI STRETTI, CARTE E SPOTIFY
+   ========================================= */
+
+/* Regole per TUTTI gli smartphone (fino a 768px) */
+@media (max-width: 768px) {
+    /* Rimpiccioliamo le flip cards per renderle proporzionate al telefono */
+    .flip-card { 
+        height: 500px !important; 
+    }
+    .card-image { 
+        height: 200px !important; /* Anche l'immagine si rimpicciolisce in proporzione */
+    }
+
+    /* Uccidiamo la barra di scorrimento di Spotify dandogli qualche pixel di respiro in verticale */
+    .spotify-player {
+        height: 86px !important; 
+    }
+}
+
+/* Regole EXTRA per gli smartphone con lo schermo MOLTO STRETTO (fino a 400px) */
+@media (max-width: 400px) {
+    /* Rimpiccioliamo ulteriormente i titoli per farli stare rigorosamente su una riga */
+    .hero h1 { font-size: 1.8rem !important; }
+    .section-title { font-size: 1.4rem !important; }
+    .text-content h2 { font-size: 1.5rem !important; }
+    .front-overlay h3 { font-size: 1.4rem !important; }
+    .carosello-scroll .slide-title { font-size: 1.8rem !important; }
+}
