@@ -249,31 +249,43 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
 }
 
 /* =========================================
-   DIVISORE IMMAGINE PNG
-   ========================================= */
-/* =========================================
-   DIVISORE PNG (POSIZIONAMENTO ESATTO)
+   REGOLE BASE DIVISORI PNG (Comuni a tutti)
    ========================================= */
 .png-divider {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* TRUCCO: I margini negativi annullano lo spazio delle sezioni */
-    margin-top: -100px;    /* Tira su il divisore verso la sezione sopra */
-    margin-bottom: -150px; /* Tira su la sezione sotto verso il divisore */
-    
-    line-height: 0;       /* Elimina spazi invisibili del testo */
+    line-height: 0;
     position: relative;
-    z-index: 99;          /* Lo tiene sopra i bordi delle sezioni */
-    pointer-events: none; /* Impedisce che l'immagine blocchi eventuali clic */
+    z-index: 99;
+    pointer-events: none; 
+}
+.png-divider img {
+    height: auto;
+    max-width: 90%; /* Protezione per non sbordare mai */
 }
 
-.png-divider img {
-    width: 500px;        /* Regola la grandezza del tuo PNG da qui */
-    height: auto;
-    max-width: 90%;      /* Evita che esca dai bordi su mobile */
+/* =========================================
+   MISURE SPECIFICHE PER OGNI DIVISORE (Su PC)
+   ========================================= */
+
+/* Divisore 1: Hero -> Concept */
+#div-hero-concept {
+    margin-top: -100px;    /* Regola lo spazio sopra */
+    margin-bottom: -140px; /* Regola lo spazio sotto */
+}
+#div-hero-concept img {
+    width: 400px;         /* Regola la grandezza di questa specifica immagine */
+}
+
+/* Divisore 2: Concept -> Ambienti */
+#div-concept-ambienti {
+    margin-top: -180px;    /* Magari qui serve tirare su di più... */
+    margin-bottom: -180px; /* ...e spingere giù di meno */
+}
+#div-concept-ambienti img {
+    width: 400px;         /* Magari questo disegnino lo vuoi più piccolo */
 }
 
 /* =========================================
@@ -413,6 +425,25 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     /* 4. Le appoggiamo dolcemente ai bordi dello schermo */
     .prev-btn { left: -5px; }
     .next-btn { right: -5px; }
+    /* --- REGOLAZIONE DIVISORI PER SMARTPHONE --- */
+    
+    /* Divisore 1 su Mobile */
+    #div-hero-concept {
+        margin-top: -70px;    /* Margini ridotti per il telefono */
+        margin-bottom: -70px;
+    }
+    #div-hero-concept img {
+        width: 190px;         /* Immagine rimpicciolita per il telefono */
+    }
+
+    /* Divisore 2 su Mobile */
+    #div-concept-ambienti {
+        margin-top: -80px;
+        margin-bottom: -80px;
+    }
+    #div-concept-ambienti img {
+        width: 190px;
+    }
 }
 
 /* --- SCHERMI MICROSCOPICI (Fino a 400px) --- */
