@@ -250,5 +250,36 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionVisibilityObserver.observe(conceptCarousel);
     }
 
+    // --- PRELOADER & AVVISO CUFFIE ---
+    const preloader = document.getElementById('preloader');
+    
+    // Controlliamo se è la prima volta che l'utente entra
+    const hasVisited = sessionStorage.getItem('siteVisited');
+
+    if (preloader) {
+        if (!hasVisited) {
+            // È la prima volta: Blocchiamo lo scroll
+            document.body.classList.add('no-scroll');
+            
+            // Usiamo window.addEventListener('load') perché aspetta che TUTTE LE IMMAGINI siano scaricate
+            window.addEventListener('load', () => {
+                
+                // Lasciamo il messaggio a schermo per almeno 1.5 secondi extra per farlo leggere bene
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden'); // Fa dissolvere la schermata
+                    document.body.classList.remove('no-scroll'); // Sblocca lo scorrimento
+                    
+                    // Salviamo in memoria che l'utente ha già visto il caricamento
+                    sessionStorage.setItem('siteVisited', 'true');
+                }, 1500); 
+            });
+            
+        } else {
+            // L'utente aveva già caricato il sito in questa sessione. 
+            // Nascondiamo istantaneamente il preloader senza fargli perdere tempo.
+            preloader.style.display = 'none';
+        }
+    }
+
 }); // <-- Fine unica e corretta del DOMContentLoaded
 
