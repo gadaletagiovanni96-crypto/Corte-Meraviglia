@@ -655,7 +655,7 @@ iframe[src*="spotify.com"]::-webkit-scrollbar, .spotify-player::-webkit-scrollba
     .footer-logo-container { justify-content: center; }
 
     /* Flip Cards Mobile: Più larghe e leggermente più basse */
-    .services-grid .flip-card { flex: 0 0 85% !important; height: 490px !important; }
+    .services-grid .flip-card { flex: 0 0 85% !important; height: 510px !important; }
     .card-body { padding: 20px 10px !important; }
     .card-body p { padding: 0 15px !important; font-size: 0.95rem; }
     .card-image { height: 200px !important; }
