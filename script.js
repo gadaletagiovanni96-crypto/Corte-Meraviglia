@@ -163,16 +163,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. CAROSELLO CONCEPT (Frecce, Pallini e Autoscroll) ---
+    // --- 9. CAROSELLO CONCEPT (Frecce, Pallini e Autoscroll Intelligente) ---
     const conceptCarousel = document.getElementById('concept-carousel');
     const conceptDots = document.querySelectorAll('.carosello-dots .dot');
     const prevConceptBtn = document.querySelector('.prev-concept');
     const nextConceptBtn = document.querySelector('.next-concept');
 
     if (conceptCarousel && conceptDots.length > 0) {
+        
+        // 1. FORZATURA ALL'AVVIO: Rimette fisicamente il carosello alla prima slide a ogni ricaricamento
+        conceptCarousel.scrollLeft = 0; 
+        
         const slides = Array.from(conceptCarousel.children);
         let autoScrollInterval;
 
+        // Observer interno per i pallini
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -205,7 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
             goToSlide(prevIndex);
         };
 
-        const startAutoScroll = () => { autoScrollInterval = setInterval(scrollToNextSlide, 4000); };
+        // Funzioni per accendere e spegnere il motore
+        const startAutoScroll = () => { 
+            clearInterval(autoScrollInterval); // Pulisce sempre il timer vecchio per evitare impazzimenti
+            autoScrollInterval = setInterval(scrollToNextSlide, 4000); 
+        };
         const stopAutoScroll = () => { clearInterval(autoScrollInterval); };
 
         // Clic sulle Frecce
@@ -219,43 +228,26 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.addEventListener('click', () => { goToSlide(index); stopAutoScroll(); startAutoScroll(); });
         });
 
+        // Ferma il carosello se ci metti il mouse o il dito sopra
         conceptCarousel.addEventListener('touchstart', stopAutoScroll, {passive: true});
         conceptCarousel.addEventListener('touchend', startAutoScroll);
         conceptCarousel.addEventListener('mouseenter', stopAutoScroll);
         conceptCarousel.addEventListener('mouseleave', startAutoScroll);
 
-        startAutoScroll();
-    }
-
-    // --- PRELOADER & AVVISO CUFFIE ---
-    const preloader = document.getElementById('preloader');
-    
-    // Controlliamo se è la prima volta che l'utente entra
-    const hasVisited = sessionStorage.getItem('siteVisited');
-
-    if (preloader) {
-        if (!hasVisited) {
-            // È la prima volta: Blocchiamo lo scroll
-            document.body.classList.add('no-scroll');
-            
-            // Usiamo window.addEventListener('load') perché aspetta che TUTTE LE IMMAGINI siano scaricate
-            window.addEventListener('load', () => {
-                
-                // Lasciamo il messaggio a schermo per almeno 1.5 secondi extra per farlo leggere bene
-                setTimeout(() => {
-                    preloader.classList.add('preloader-hidden'); // Fa dissolvere la schermata
-                    document.body.classList.remove('no-scroll'); // Sblocca lo scorrimento
-                    
-                    // Salviamo in memoria che l'utente ha già visto il caricamento
-                    sessionStorage.setItem('siteVisited', 'true');
-                }, 1500); 
+        // 2. LA MAGIA: L'Observer della Sezione
+        // Questo controlla se il carosello è attualmente visibile nello schermo dell'utente
+        const sectionVisibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startAutoScroll(); // Inizia a girare solo se lo stai guardando
+                } else {
+                    stopAutoScroll();  // Si ferma completamente se scorri su o giù
+                }
             });
-            
-        } else {
-            // L'utente aveva già caricato il sito in questa sessione. 
-            // Nascondiamo istantaneamente il preloader senza fargli perdere tempo.
-            preloader.style.display = 'none';
-        }
+        }, { threshold: 0.2 }); // Si attiva non appena ne vedi almeno il 20%
+
+        // Attacchiamo la telecamera al carosello
+        sectionVisibilityObserver.observe(conceptCarousel);
     }
 
 }); // <-- Fine unica e corretta del DOMContentLoaded
